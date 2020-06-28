@@ -1,4 +1,4 @@
-class Essen {
+export default class Essen {
 
     constructor() {
         this.id = id;
