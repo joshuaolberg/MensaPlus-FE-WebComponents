@@ -1,3 +1,4 @@
+import Template from './essen-list.template.js'
 import Essen from '../../classes/essen.js'
 
 export default class EssenListComponent extends HTMLElement {
@@ -6,30 +7,15 @@ export default class EssenListComponent extends HTMLElement {
         return this.getAttribute('api');
     }
 
-    connectedCallback() {
-        this.templates = document.createElement('div');
-        this.appendChild(this.templates);
-
-        const request = new XMLHttpRequest();
-        request.open('GET', 'app/modules/essen/components/essen-list/essen-list.component.html', true);
-        request.addEventListener('load', (event) => {
-            this.templates.innerHTML = event.target.response;
-            this.getSpeisekarte();
-        });
-        request.send();
+    constructor() {
+        super();
+        this.attachShadow({mode: 'open'});
+        this.shadowRoot.innerHTML = Template.render();
+        this.dom = Template.mapDOM(this.shadowRoot);
+        this.getSpeisekarte();
     }
 
     getSpeisekarte() {
-
-        // Render Template
-        const template = this.templates.querySelector('template');
-        if (template) {
-            const clone = template.content.cloneNode(true);
-            this.templates.innerHTML = '';
-            this.templates.appendChild(clone);
-        }
-
-        // Render Speisekarte (from API)
         const request = new XMLHttpRequest();
         request.open('GET', this.api, true);
         request.addEventListener('load', (event) => {
@@ -38,6 +24,7 @@ export default class EssenListComponent extends HTMLElement {
         request.send();
     }
 
+    /* LOOP - Maybe a bit unnecessary */
     renderSpeisekarte(assets) {
         let speisekarte = [];
         for (let i = 0; i < assets.length; i++) {
@@ -59,11 +46,10 @@ export default class EssenListComponent extends HTMLElement {
                 '</ul>'
                 + '</div>';
         });
-        document.getElementById('speisekarte').innerHTML = content;
+        this.dom.speisekarte.innerHTML = content;
     }
 }
 
 if (!customElements.get('mp-essen-list')) {
     customElements.define('mp-essen-list', EssenListComponent);
 }
-
