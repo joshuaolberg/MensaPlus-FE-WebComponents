@@ -3,8 +3,8 @@ import './modules/essensplan/essensplan.module.js';
 import './modules/home/home.module.js';
 import './modules/not-found/not-found.module.js';
 
-import './modules/essen/components/essen-detail/essen-detail.component.js'
-import './modules/essen/essen-detail.module.js';
+import './modules/essen-detail/components/essen-detail/essen-detail.component.js'
+import './modules/essen-detail/essen-detail.module.js';
 
 import {Router} from '../vaadin-router.js'
 
