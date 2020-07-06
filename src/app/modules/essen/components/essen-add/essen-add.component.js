@@ -1,7 +1,6 @@
 import Template from './essen-add.template.js'
 import Essen from "../../classes/essen.js";
 
-// TODO: attributeChangedCallback anschauen UND MutationObserver. Was ist der Unterschied?
 export default class EssenAddComponent extends HTMLElement {
 
     get api() {
@@ -13,14 +12,20 @@ export default class EssenAddComponent extends HTMLElement {
         this.shadowRoot.innerHTML = Template.render();
         this.dom = Template.mapDOM(this.shadowRoot);
 
-        this.shadowRoot.addEventListener('change', e =>
+        this.shadowRoot.addEventListener('change', e => {
             this.dom = Template.mapDOM(this.shadowRoot)
-        );
+        });
 
-        // add Essen
+        // add Essen Eventlistener
         const form = this.dom.addEssenForm;
         form.addEventListener('submit', (event) => {
             event.preventDefault();
+
+            if (this.dom.name === '') {
+                alert('Bitte geben Sie einen Namen an.');
+                return;
+            }
+
             let essen = new Essen(this.dom.name, this.dom.preis, this.dom.art);
             this.addEssen(essen);
         });
@@ -30,7 +35,18 @@ export default class EssenAddComponent extends HTMLElement {
         const request = new XMLHttpRequest();
         request.open('POST', this.api, true);
         request.setRequestHeader("Content-Type", "application/json");
-        request.send(JSON.stringify(essen))
+
+        // Check if success
+        request.onreadystatechange = function () {
+            if (request.readyState === 4 && request.status === 200) {
+                console.log('Essen wurde hinzugefügt')
+            } else {
+                alert('failed')
+            }
+        }
+        request.send(JSON.stringify(essen));
+
+        this.shadowRoot.getElementById('success').classList.add('active');
     }
 }
 

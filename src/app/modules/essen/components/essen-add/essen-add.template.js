@@ -21,7 +21,7 @@ export default {
                             <form id="addEssenForm">
                                 <div class="form-group">
                                     <label for="name">Name*</label>
-                                    <input class="form-control" id="name" type="text">
+                                    <input class="form-control" id="name" type="text" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="preis">Preis</label>
@@ -31,6 +31,8 @@ export default {
                                     <label for="art">Art</label>
                                     <input class="form-control" id="art" type="text">
                                 </div>
+                                <div id="success" class="success">Essen erfolgreich hinzugefügt.</div>
+                                <div id="error" class="error">Bitte korrigieren Sie Ihre eingaben.</div>
                                 <button id="submit" class="btn" type="submit">Hinzufügen</button>
                             </form>                
                         </div>
@@ -42,7 +44,15 @@ export default {
     css() {
         return `<style>
                     h1 {
-                    color: green;
+                        color: green;
+                    }
+                    
+                    .success, .error {
+                        display: none;
+                    }
+                                    
+                    .active {
+                        display: block;
                     }
                 </style>`;
     }
