@@ -1,7 +1,10 @@
-import EssenModule from './modules/essen/essen.module.js'
-import EssensplanModule from './modules/essensplan/essensplan.module.js'
-import HomeModule from './modules/home/home.module.js';
-import NotFoundModule from './modules/not-found/not-found.module.js'
+import './modules/essen/essen.module.js';
+import './modules/essensplan/essensplan.module.js';
+import './modules/home/home.module.js';
+import './modules/not-found/not-found.module.js';
+
+import './modules/essen/components/essen-detail/essen-detail.component.js'
+import './modules/essen/essen-detail.module.js';
 
 import {Router} from '../vaadin-router.js'
 
@@ -13,10 +16,10 @@ const router = new Router(outlet);
 router.setRoutes([
     {path: '/', component: 'mp-home-module'},
     {path: '/speisekarte', component: 'mp-essen-module'},
+    {path: '/speisekarte/:id', component: 'mp-essen-detail'},
     {path: '/essensplan', component: 'mp-essensplan-module'},
     {path: '(.*)', component: 'mp-not-found-module'},
 ]);
-
 
 /*
 class AppModule extends HTMLElement {

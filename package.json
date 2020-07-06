@@ -2,13 +2,14 @@
   "name": "wc-frontend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Joshua Olberg",
   "license": "ISC",
   "dependencies": {
+    "@vaadin/router": "^1.7.2",
     "bootstrap": "^4.5.0"
   }
 }

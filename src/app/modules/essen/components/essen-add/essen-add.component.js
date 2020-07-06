@@ -12,11 +12,12 @@ export default class EssenAddComponent extends HTMLElement {
         this.shadowRoot.innerHTML = Template.render();
         this.dom = Template.mapDOM(this.shadowRoot);
 
+        // Change Eventlistener
         this.shadowRoot.addEventListener('change', e => {
             this.dom = Template.mapDOM(this.shadowRoot)
         });
 
-        // add Essen Eventlistener
+        // Form Eventlistener
         const form = this.dom.addEssenForm;
         form.addEventListener('submit', (event) => {
             event.preventDefault();
@@ -40,13 +41,15 @@ export default class EssenAddComponent extends HTMLElement {
         request.onreadystatechange = function () {
             if (request.readyState === 4 && request.status === 200) {
                 console.log('Essen wurde hinzugefügt')
-            } else {
-                alert('failed')
             }
         }
         request.send(JSON.stringify(essen));
 
         this.shadowRoot.getElementById('success').classList.add('active');
+        //this.EssenListComponent.getSpeisekarte();
+        setTimeout(function () {
+            location.reload()
+        }, 500);
     }
 }
 

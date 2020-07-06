@@ -3,8 +3,10 @@ import EssenAddComponent from './components/essen-add/essen-add.component.js'
 
 
 export default class EssenModule extends HTMLElement {
+
     connectedCallback() {
-        this.innerHTML = '<mp-essen-list api="http://localhost:8080/essen"></mp-essen-list> <mp-essen-add api="http://localhost:8080/essen" name=""></mp-essen-add>'
+        this.innerHTML = '<mp-essen-list api="http://localhost:8080/essen"></mp-essen-list> ' +
+            '<mp-essen-add api="http://localhost:8080/essen" name=""></mp-essen-add>'
     }
 }
 
