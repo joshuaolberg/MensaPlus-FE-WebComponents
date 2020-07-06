@@ -7,6 +7,7 @@ export default {
     mapDOM(scope) {
         return {
             essenDetails: scope.getElementById('essen-details'),
+            btnGoBack: scope.getElementById('go-back'),
         }
     },
 
@@ -15,13 +16,14 @@ export default {
                 <div id="essen-details">
                 
                 </div>
+                <button id="go-back">Zurück</button>
                 `
     },
 
     css() {
         return `<style>
                     h1 {
-                    color: blue;
+                    color: red;
                     }
                 </style>`;
     }

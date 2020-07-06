@@ -8,6 +8,10 @@ export default class EssenDetailComponent extends HTMLElement {
 
     connectedCallback() {
         this.attachShadow({mode: 'open'});
+        this.shadowRoot.innerHTML = Template.render();
+        this.dom = Template.mapDOM(this.shadowRoot);
+
+        this.dom.btnGoBack.addEventListener('click', () => window.history.back());
     }
 
     onAfterEnter(context) {
@@ -25,7 +29,7 @@ export default class EssenDetailComponent extends HTMLElement {
     }
 
     renderEssen(essen) {
-        this.shadowRoot.innerHTML = '<h1>' + essen.name + ' Details</h1>' +
+        this.dom.essenDetails.innerHTML = '<h1>' + essen.name + ' Details</h1>' +
             '<ul>' +
             '<li> <span>ID: </span>' + essen.id + '</li>' +
             '<li> <span>Name: </span>' + essen.name + '</li>' +
