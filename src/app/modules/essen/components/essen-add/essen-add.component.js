@@ -13,9 +13,9 @@ export default class EssenAddComponent extends HTMLElement {
         this.dom = Template.mapDOM(this.shadowRoot);
 
         // Change Eventlistener
-        this.shadowRoot.addEventListener('change', e => {
+        this.shadowRoot.addEventListener('change', () =>
             this.dom = Template.mapDOM(this.shadowRoot)
-        });
+        );
 
         // Form Eventlistener
         const form = this.dom.addEssenForm;

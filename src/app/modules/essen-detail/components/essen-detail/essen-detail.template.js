@@ -8,14 +8,15 @@ export default {
         return {
             essenDetails: scope.getElementById('essen-details'),
             btnGoBack: scope.getElementById('go-back'),
+            name: scope.getElementById('name'),
+            preis: scope.getElementById('preis'),
+            art: scope.getElementById('art'),
         }
     },
 
     html() {
         return `<h1 id="essen-name"></h1>
-                <div id="essen-details">
-                
-                </div>
+                <div id="essen-details"></div>
                 <button id="go-back">Zurück</button>
                 `
     },
