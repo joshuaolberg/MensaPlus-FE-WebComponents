@@ -6,22 +6,22 @@ export default class EssenDetailComponent extends HTMLElement {
         return this.getAttribute('api');
     }
 
+    get id() {
+        return this.getAttribute('id');
+    }
+
     connectedCallback() {
         this.attachShadow({mode: 'open'});
         this.shadowRoot.innerHTML = Template.render();
         this.dom = Template.mapDOM(this.shadowRoot);
+        this.getEssenById(this.id);
 
         this.dom.btnGoBack.addEventListener('click', () => window.history.back());
     }
 
-    onAfterEnter(context) {
-        this.getEssenById({id: context.params.id});
-    }
-
-    getEssenById(props) {
-        const url = 'http://localhost:8080/essen/' + props.id
+    getEssenById(id) {
         const request = new XMLHttpRequest();
-        request.open('GET', url);
+        request.open('GET', this.api + id);
         request.addEventListener('load', (event) => {
             this.renderEssen(JSON.parse(event.target.response));
         });

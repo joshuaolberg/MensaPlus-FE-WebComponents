@@ -17,7 +17,7 @@ const router = new Router(outlet);
 router.setRoutes([
     {path: '/', component: 'mp-home-module'},
     {path: '/speisekarte', component: 'mp-essen-module'},
-    {path: '/speisekarte/:id', component: 'mp-essen-detail'},
+    {path: '/speisekarte/:id', component: 'mp-essen-detail-module'},
     {path: '/essensplan', component: 'mp-essensplan-module'},
     {path: '(.*)', component: 'mp-not-found-module'},
 ]);
