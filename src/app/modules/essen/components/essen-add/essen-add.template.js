@@ -15,8 +15,8 @@ export default {
 
     html() {
         return `<h1>Essen hinzufügen</h1>
-                 <div class="row">
-                    <div class="container">
+                 <div class="container">
+                    <div class="row">
                         <div id="addEssen">
                             <form id="addEssenForm">
                                 <div class="form-group">

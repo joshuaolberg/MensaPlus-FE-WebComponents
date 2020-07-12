@@ -1,6 +1,6 @@
-class Essensplan {
+export default class Essensplan {
 
-    constructor() {
+    constructor(kalenderwoche) {
         this.kalenderwoche = kalenderwoche;
     }
 }

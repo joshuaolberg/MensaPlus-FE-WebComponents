@@ -2,10 +2,10 @@ import './modules/home/home.module.js';
 import './modules/not-found/not-found.module.js';
 
 import './modules/essen/essen.module.js';
-import './modules/essensplan/essensplan.module.js';
-
-import './modules/essen-detail/components/essen-detail/essen-detail.component.js'
 import './modules/essen-detail/essen-detail.module.js';
+
+import './modules/essensplan/essensplan.module.js';
+import './modules/essensplan-detail/essensplan-detail.module.js';
 
 import {Router} from '../vaadin-router.js'
 
@@ -19,6 +19,7 @@ router.setRoutes([
     {path: '/speisekarte', component: 'mp-essen-module'},
     {path: '/speisekarte/:id', component: 'mp-essen-detail-module'},
     {path: '/essensplan', component: 'mp-essensplan-module'},
+    {path: '/essensplan/:id', component: 'mp-essensplan-detail-module'},
     {path: '(.*)', component: 'mp-not-found-module'},
 ]);
 

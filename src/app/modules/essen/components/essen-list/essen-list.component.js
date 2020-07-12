@@ -6,8 +6,7 @@ export default class EssenListComponent extends HTMLElement {
         return this.getAttribute('api');
     }
 
-    constructor() {
-        super();
+    connectedCallback() {
         this.attachShadow({mode: 'open'});
         this.shadowRoot.innerHTML = Template.render();
         this.dom = Template.mapDOM(this.shadowRoot);

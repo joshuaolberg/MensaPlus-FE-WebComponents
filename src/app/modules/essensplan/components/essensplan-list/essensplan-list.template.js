@@ -23,7 +23,7 @@ export default {
     css() {
         return `<style>
                     h1 {
-                    color: blue;
+                    color: green;
                     }
                 </style>`;
     }
