@@ -1,6 +1,9 @@
+import './components/essensplan-list/essensplan-list.component.js'
+
 export default class EssensplanModule extends HTMLElement {
+
     connectedCallback() {
-        this.innerText = 'Hello Essensplan'
+        this.innerHTML = '<mp-essensplan-list api="http://localhost:8080/essensplan"></mp-essensplan-list>'
     }
 }
 

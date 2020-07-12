@@ -1,5 +1,4 @@
 import Template from './essen-list.template.js'
-import Essen from '../../classes/essen.js'
 
 export default class EssenListComponent extends HTMLElement {
 
