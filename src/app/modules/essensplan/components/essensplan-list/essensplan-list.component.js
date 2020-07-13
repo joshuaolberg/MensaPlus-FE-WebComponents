@@ -34,18 +34,18 @@ export default class EssensplanListComponent extends HTMLElement {
 
         // extract weekdays
         essensplan.forEach(essensplan => {
-            essensplan.wochentag = Object.keys(essensplan.essenProWoche)
+            essensplan.essenProWoche.wochentag = Object.keys(essensplan.essenProWoche)
         });
 
         let content = '';
         essensplan.forEach(essensplan => {
             content += '<h1>KW: ' + essensplan.kalenderwoche + '</h1>' + '<ul>' +
-                '<span>ID:</span> <a href="/essensplan/' + essensplan.id + '">' + essensplan.id + '</a>' +
-                '<li>' + essensplan.wochentag[0] + ': ' + '<a href="/speisekarte/' + essensplan.essenProWoche.Montag?.id + '">' + essensplan.essenProWoche.Montag?.name + '</a></li>' +
-                '<li>' + essensplan.wochentag[1] + ': ' + '<a href="/speisekarte/' + essensplan.essenProWoche.Dienstag?.id + '">' + essensplan.essenProWoche.Dienstag?.name + '</a></li>' +
-                '<li>' + essensplan.wochentag[2] + ': ' + '<a href="/speisekarte/' + essensplan.essenProWoche.Mittwoch?.id + '">' + essensplan.essenProWoche.Mittwoch?.name + '</a></li>' +
-                '<li>' + essensplan.wochentag[3] + ': ' + '<a href="/speisekarte/' + essensplan.essenProWoche.Donnerstag?.id + '">' + essensplan.essenProWoche.Donnerstag?.name + '</a></li>' +
-                '<li>' + essensplan.wochentag[4] + ': ' + '<a href="/speisekarte/' + essensplan.essenProWoche.Freitag?.id + '">' + essensplan.essenProWoche.Freitag?.name + '</a></li>' +
+                '<span>ID: </span><a href="/essensplan/' + essensplan.id + '">' + essensplan.id + '</a>' +
+                '<li>' + essensplan.essenProWoche.wochentag[0] + ': ' + '<a href="/speisekarte/' + essensplan.essenProWoche.Montag?.id + '">' + essensplan.essenProWoche.Montag?.name + '</a></li>' +
+                '<li>' + essensplan.essenProWoche.wochentag[1] + ': ' + '<a href="/speisekarte/' + essensplan.essenProWoche.Dienstag?.id + '">' + essensplan.essenProWoche.Dienstag?.name + '</a></li>' +
+                '<li>' + essensplan.essenProWoche.wochentag[2] + ': ' + '<a href="/speisekarte/' + essensplan.essenProWoche.Mittwoch?.id + '">' + essensplan.essenProWoche.Mittwoch?.name + '</a></li>' +
+                '<li>' + essensplan.essenProWoche.wochentag[3] + ': ' + '<a href="/speisekarte/' + essensplan.essenProWoche.Donnerstag?.id + '">' + essensplan.essenProWoche.Donnerstag?.name + '</a></li>' +
+                '<li>' + essensplan.essenProWoche.wochentag[4] + ': ' + '<a href="/speisekarte/' + essensplan.essenProWoche.Freitag?.id + '">' + essensplan.essenProWoche.Freitag?.name + '</a></li>' +
                 '</ul>'
                 + '<a href="/essensplan/' + essensplan.id + '"/><button class=btn>Anzeigen</button></a>'
         });
