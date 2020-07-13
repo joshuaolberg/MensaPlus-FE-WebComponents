@@ -1,4 +1,6 @@
 import './components/essensplan-detail/essensplan-detail.component.js'
+import './components/essensplan-delete/essensplan-delete.component.js'
+import './components/essensplan-update/essensplan-update.component.js'
 
 export default class EssensplanDetailModule extends HTMLElement {
 

@@ -33,7 +33,7 @@ export default class EssensplanDetailComponent extends HTMLElement {
         // extract weekdays
         essensplan.essenProWoche.wochentag = Object.keys(essensplan.essenProWoche);
 
-        this.dom.essensplanDetails.innerHTML = '<h1>KW: ' + essensplan.kalenderwoche + '</h1>' + '<ul>' +
+        this.dom.essensplanDetails.innerHTML = '<h1>Essensplan KW ' + essensplan.kalenderwoche + '</h1>' + '<ul>' +
             '<span>ID: </span>' + essensplan.id + '</a>' +
             '<li>' + essensplan.essenProWoche.wochentag[0] + ': ' + '<a href="/speisekarte/' + essensplan.essenProWoche.Montag?.id + '">' + essensplan.essenProWoche.Montag?.name + '</a></li>' +
             '<li>' + essensplan.essenProWoche.wochentag[1] + ': ' + '<a href="/speisekarte/' + essensplan.essenProWoche.Dienstag?.id + '">' + essensplan.essenProWoche.Dienstag?.name + '</a></li>' +
