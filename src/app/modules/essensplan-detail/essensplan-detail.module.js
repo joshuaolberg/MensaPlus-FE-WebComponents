@@ -2,6 +2,7 @@ import './components/essensplan-detail/essensplan-detail.component.js'
 import './components/essensplan-delete/essensplan-delete.component.js'
 import './components/essensplan-update/essensplan-update.component.js'
 import './components/essensplan-add-essen/essensplan-add-essen.component.js'
+import './components/essensplan-remove-essen/essensplan-remove-essen.component.js'
 
 export default class EssensplanDetailModule extends HTMLElement {
 

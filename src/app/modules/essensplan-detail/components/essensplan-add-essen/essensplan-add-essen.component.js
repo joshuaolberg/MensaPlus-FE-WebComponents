@@ -58,7 +58,6 @@ export default class EssensplanAddEssenComponent extends HTMLElement {
 
     addEssenToEssensplan(essenId, wochentagId) {
         const url = this.api + this.id + '/add/' + essenId + '/wt=' + wochentagId;
-        console.log(url);
         const request = new XMLHttpRequest();
         request.open('POST', url, true)
         request.setRequestHeader('Content-Type', 'application/json');
@@ -66,10 +65,11 @@ export default class EssensplanAddEssenComponent extends HTMLElement {
         // Check if success
         request.onreadystatechange = function () {
             if (request.readyState === 4 && request.status === 200) {
-                console.log('Essen wurde zum Essensplan hinzugefügt')
+                console.log('Essen wurde zum Essensplan hinzugefügt');
             }
         }
         request.send();
+        this.shadowRoot.getElementById('success').classList.add('active');
     }
 }
 
