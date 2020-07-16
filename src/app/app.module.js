@@ -16,10 +16,20 @@ const outlet = document.querySelector('mp-app-root');
 const router = new Router(outlet);
 router.setRoutes([
     {path: '/', component: 'mp-home-module'},
-    {path: '/speisekarte', component: 'mp-essen-module'},
-    {path: '/speisekarte/:id', component: 'mp-essen-detail-module'},
-    {path: '/essensplan', component: 'mp-essensplan-module'},
-    {path: '/essensplan/:id', component: 'mp-essensplan-detail-module'},
+    {
+        path: '/speisekarte',
+        children: [
+            {path: '/', component: 'mp-essen-module'},
+            {path: '/:id', component: 'mp-essen-detail-module'}
+        ]
+    },
+    {
+        path: '/essensplan',
+        children: [
+            {path: '/', component: 'mp-essensplan-module'},
+            {path: '/:id', component: 'mp-essensplan-detail-module'}
+        ]
+    },
     {path: '(.*)', component: 'mp-not-found-module'},
 ]);
 

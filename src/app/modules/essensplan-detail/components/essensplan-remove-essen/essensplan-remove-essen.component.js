@@ -50,7 +50,6 @@ export default class EssensplanRemoveEssenComponent extends HTMLElement {
         const selectedEssen = JSON.parse(essen);
         const essenId = selectedEssen.essenId;
         const wochentagId = selectedEssen.wochentagId;
-
         const url = this.api + this.id + '/delete/' + essenId + '/wt=' + wochentagId;
 
         const request = new XMLHttpRequest();
@@ -65,6 +64,10 @@ export default class EssensplanRemoveEssenComponent extends HTMLElement {
         }
         request.send();
         this.shadowRoot.getElementById('success').classList.add('active');
+
+        setTimeout(function () {
+            location.reload()
+        }, 500);
     }
 }
 

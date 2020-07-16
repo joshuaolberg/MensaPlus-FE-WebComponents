@@ -33,11 +33,14 @@ export default class EssensplanUpdateComponent extends HTMLElement {
         const request = new XMLHttpRequest();
         request.open('PUT', this.api);
         request.setRequestHeader("Content-Type", "application/json");
-
-        request.addEventListener('load', (event) => console.log('Essensplan saved'));
+        request.addEventListener('load', (event) => alert('Essensplan gespeichert'));
         request.send(JSON.stringify(essensplan));
 
         this.shadowRoot.getElementById('success').classList.add('active');
+
+        setTimeout(function () {
+            location.reload()
+        }, 500);
     }
 }
 

@@ -65,11 +65,15 @@ export default class EssensplanAddEssenComponent extends HTMLElement {
         // Check if success
         request.onreadystatechange = function () {
             if (request.readyState === 4 && request.status === 200) {
-                console.log('Essen wurde zum Essensplan hinzugefügt');
+                alert('Essen wurde zum Essensplan hinzugefügt');
             }
         }
         request.send();
         this.shadowRoot.getElementById('success').classList.add('active');
+
+        setTimeout(function () {
+            location.reload()
+        }, 500);
     }
 }
 

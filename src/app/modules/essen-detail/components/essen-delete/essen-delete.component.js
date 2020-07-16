@@ -20,10 +20,13 @@ export default class EssenDeleteComponent extends HTMLElement {
 
     deleteEssenById(id) {
         const request = new XMLHttpRequest();
-        request.open('DELETE', this.api + id);
+        request.open('DELETE', this.api + id, true);
         request.addEventListener('load', (event) => alert('Essen gelöscht'));
         request.send();
-        window.history.back();
+
+        setTimeout(function () {
+            window.history.back();
+        }, 500);
     }
 }
 

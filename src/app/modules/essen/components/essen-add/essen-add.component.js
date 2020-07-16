@@ -40,7 +40,7 @@ export default class EssenAddComponent extends HTMLElement {
         // Check if success
         request.onreadystatechange = function () {
             if (request.readyState === 4 && request.status === 200) {
-                console.log('Essen wurde hinzugefügt')
+                alert('Essen wurde hinzugefügt');
             }
         }
         request.send(JSON.stringify(essen));

@@ -23,7 +23,7 @@ export default {
                                     <select class="form-control" id="essenSelect"></select>
                                 </div>
                                 <div id="success" class="success">Essen erfolgreich gelöscht.</div>
-                                <button id="submit" class="btn" type="submit">Hinzufügen</button>
+                                <button id="submit" class="btn" type="submit">Entfernen</button>
                             </form>                
                         </div>
                     </div>
