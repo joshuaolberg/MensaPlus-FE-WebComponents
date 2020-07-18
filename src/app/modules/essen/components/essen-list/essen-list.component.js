@@ -39,7 +39,7 @@ export default class EssenListComponent extends HTMLElement {
             content += '<div class="essen-item">' + '<h3>' + essen.name + '</h3>' +
                 '<ul>' +
                 '<li> <span>ID:</span> <a href="/speisekarte/' + essen.id + '">' + essen.id + '</a></li>' +
-                '<li> <span>Preis:</span> ' + essen.preis + '</li>' +
+                '<li> <span>Preis:</span> ' + essen.preis + '€</li>' +
                 '<li> <span>Art:</span> ' + essen.art + '</li>' +
                 '</ul>'
                 + '</div>';

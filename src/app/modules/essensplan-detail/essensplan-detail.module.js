@@ -12,7 +12,7 @@ export default class EssensplanDetailModule extends HTMLElement {
 
     renderEssensplanDetail(props) {
         this.innerHTML = '<mp-essensplan-detail api="http://localhost:8080/essensplan/" id=' + props.id + '></mp-essensplan-detail>' +
-            '<mp-essensplan-update api="http://localhost:8080/essensplan" id=' + props.id + '></mp-essensplan-update>' +
+            '<mp-essensplan-update api="http://localhost:8080/essensplan/" id=' + props.id + '></mp-essensplan-update>' +
             '<mp-essensplan-delete api="http://localhost:8080/essensplan/" id=' + props.id + '></mp-essensplan-delete>' +
             '<mp-essensplan-add-essen api="http://localhost:8080/essensplan/" id=' + props.id + '></mp-essensplan-add-essen>' +
             '<mp-essensplan-remove-essen api="http://localhost:8080/essensplan/" id=' + props.id + '></mp-essensplan-remove-essen>'

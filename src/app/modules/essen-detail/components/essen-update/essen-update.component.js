@@ -1,6 +1,5 @@
 import Template from './essen-update.template.js'
-import EssenDetailComponent from "../essen-detail/essen-detail.component.js";
-// import Essen from "../../../essen/classes/essen";
+import Essen from "../../../essen/classes/essen.js";
 
 // TODO:  Reload Essen-Detail when saved or fix page reload
 export default class EssenUpdateComponent extends HTMLElement {
@@ -18,6 +17,7 @@ export default class EssenUpdateComponent extends HTMLElement {
         this.shadowRoot.innerHTML = Template.render();
         this.dom = Template.mapDOM(this.shadowRoot);
         this.dom.essenId.innerHTML = this.id;
+        this.getEssenById(this.id);
 
         // Change Eventlistener
         this.shadowRoot.addEventListener('change', () =>
@@ -31,15 +31,36 @@ export default class EssenUpdateComponent extends HTMLElement {
         });
     }
 
+    getEssenById(id) {
+        const request = new XMLHttpRequest();
+        request.open('GET', this.api + id);
+        request.addEventListener('load', (event) => {
+            this.renderEssen(JSON.parse(event.target.response));
+        });
+        request.send();
+    }
+
+    renderEssen(essen) {
+        let name = this.shadowRoot.getElementById('name');
+        let preis = this.shadowRoot.getElementById('preis');
+        let art = this.shadowRoot.getElementById('art');
+
+        name.value = essen.name;
+        preis.value = essen.preis;
+        art.value = essen.art;
+    }
+
     updateEssen(essen) {
         const request = new XMLHttpRequest();
         request.open('PUT', this.api);
         request.setRequestHeader("Content-Type", "application/json");
-
-        request.addEventListener('load', (event) => console.log('Essen saved'));
+        request.addEventListener('load', (event) => alert('Essen erfolgreich gespeichert'));
         request.send(JSON.stringify(essen));
 
         this.shadowRoot.getElementById('success').classList.add('active');
+        setTimeout(function () {
+            location.reload()
+        }, 500);
     }
 }
 

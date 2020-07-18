@@ -33,7 +33,7 @@ export default class EssenDetailComponent extends HTMLElement {
             '<ul>' +
             '<li> <span>ID: </span>' + essen.id + '</li>' +
             '<li> <span>Name: </span>' + essen.name + '</li>' +
-            '<li> <span>Preis: </span>' + essen.preis + '</li>' +
+            '<li> <span>Preis: </span>' + essen.preis + '€</li>' +
             '<li> <span>Art: </span>' + essen.art + '</li>' +
             '</ul>';
     }

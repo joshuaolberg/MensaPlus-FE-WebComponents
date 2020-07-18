@@ -16,6 +16,7 @@ const outlet = document.querySelector('mp-app-root');
 const router = new Router(outlet);
 router.setRoutes([
     {path: '/', component: 'mp-home-module'},
+    {path: '/login', component: 'mp-auth-module'},
     {
         path: '/speisekarte',
         children: [

@@ -1,4 +1,5 @@
 import Template from './essensplan-update.template.js'
+import Essensplan from "../../../essensplan/classes/essensplan.js";
 
 // TODO:  Reload Essen-Detail when saved or fix page reload
 export default class EssensplanUpdateComponent extends HTMLElement {
@@ -17,6 +18,8 @@ export default class EssensplanUpdateComponent extends HTMLElement {
         this.dom = Template.mapDOM(this.shadowRoot);
         this.dom.essensplanId.innerHTML = this.id;
 
+        this.getEssensplanById(this.id);
+
         // Change Eventlistener
         this.shadowRoot.addEventListener('change', () =>
             this.dom = Template.mapDOM(this.shadowRoot)
@@ -24,9 +27,28 @@ export default class EssensplanUpdateComponent extends HTMLElement {
 
         this.dom.form.addEventListener('submit', (event) => {
             event.preventDefault();
-            let essensplan = {id: this.id, kalenderwoche: this.dom.kalenderwoche};
+            let essensplan = {
+                id: this.essensplan.id,
+                kalenderwoche: this.dom.kalenderwoche,
+                essenProWoche: this.essensplan.essenProWoche
+            };
             this.updateEssensplan(essensplan);
         });
+    }
+
+    getEssensplanById(id) {
+        const request = new XMLHttpRequest();
+        request.open('GET', this.api + id);
+        request.addEventListener('load', (event) => {
+            this.setEssensplan(JSON.parse(event.target.response));
+        });
+        request.send();
+    }
+
+    setEssensplan(essensplan) {
+        this.essensplan = new Essensplan(essensplan.id, essensplan.kalenderwoche, essensplan.essenProWoche);
+        // Obsolete?
+        return this.essensplan;
     }
 
     updateEssensplan(essensplan) {
@@ -38,7 +60,7 @@ export default class EssensplanUpdateComponent extends HTMLElement {
 
         this.shadowRoot.getElementById('success').classList.add('active');
 
-        setTimeout(function () {
+        setTimeout(() => {
             location.reload()
         }, 500);
     }

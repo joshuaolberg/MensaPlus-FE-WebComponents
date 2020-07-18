@@ -35,7 +35,13 @@ export default {
                                 </div>
                                 <div class="form-group">
                                     <label for="art">Art</label>
-                                    <input class="form-control" id="art" type="text">
+                                    <select class="form-control" id="art" type="text">
+                                        <option disabled selected value> -- select an option -- </option>
+                                        <option value="mit Fleisch">mit Fleisch</option>
+                                        <option value="mit Fisch">mit Fisch</option>
+                                        <option value="vegetarisch">vegetarisch</option>
+                                        <option value="vegan">vegan</option>
+                                    </select>
                                 </div>
                                 <div id="success" class="success">Essen erfolgreich gespeichert.</div>
                                 <button id="submit" class="btn" type="submit">Speichern</button>
