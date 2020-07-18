@@ -1,5 +1,5 @@
 import Template from './essensplan-update.template.js'
-import Essensplan from "../../../essensplan/classes/essensplan.js";
+import Essensplan from "../../../../classes/essensplan.js";
 
 // TODO:  Reload Essen-Detail when saved or fix page reload
 export default class EssensplanUpdateComponent extends HTMLElement {

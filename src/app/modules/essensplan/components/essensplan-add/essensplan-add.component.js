@@ -1,5 +1,5 @@
 import Template from './essensplan-add.template.js'
-import Essensplan from '../../classes/essensplan.js'
+import Essensplan from '../../../../classes/essensplan.js'
 
 export default class EssensplanAddComponent extends HTMLElement {
 

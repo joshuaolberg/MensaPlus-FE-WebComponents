@@ -1,5 +1,5 @@
 import Template from './essen-update.template.js'
-import Essen from "../../../essen/classes/essen.js";
+import Essen from "../../../../classes/essen.js";
 
 // TODO:  Reload Essen-Detail when saved or fix page reload
 export default class EssenUpdateComponent extends HTMLElement {
