@@ -7,6 +7,8 @@ import './modules/essen-detail/essen-detail.module.js';
 import './modules/essensplan/essensplan.module.js';
 import './modules/essensplan-detail/essensplan-detail.module.js';
 
+import './modules/authentication/auth.module.js';
+
 import {Router} from '../vaadin-router.js'
 
 // select the DOM node where the route web components are inserted

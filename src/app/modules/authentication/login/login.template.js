@@ -6,29 +6,29 @@ export default {
 
     mapDOM(scope) {
         return {
-            form: scope.getElementById('updateEssensplanForm'),
-            essensplanId: scope.getElementById('essensplanId'),
-            kalenderwoche: scope.getElementById('kalenderwoche').value,
+            form: scope.getElementById('loginForm'),
+            username: scope.getElementById('username').value,
+            password: scope.getElementById('password').value,
         }
     },
 
     html() {
         return `
-                <h2>Update Essensplan</h2>
+                <h2>Login</h2>
                 <div class="container">
                     <div class="row">
-                        <div id="updateEssensplan">
-                            <form id="updateEssensplanForm">
+                        <div id="login">
+                            <form id="loginForm">
                                 <div class="form-group">
-                                    <label for="essensplanId">ID:</label>
-                                    <span id="essensplanId"></span>
+                                    <label for="username">Benutzername</label>
+                                    <input class="form-control" id="username" type="text" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="kalenderwoche">Kalenderwoche*</label>
-                                    <input class="form-control" id="kalenderwoche" type="text" required>
+                                    <label for="password">Passwort</label>
+                                    <input class="form-control" id="password" type="password" required>
                                 </div>
                                 <div id="success" class="success">Essensplan erfolgreich gespeichert.</div>
-                                <button id="submit" class="btn" type="submit">Speichern</button>
+                                <button id="submit" class="btn" type="submit">Login</button>
                             </form>                
                         </div>
                     </div>
