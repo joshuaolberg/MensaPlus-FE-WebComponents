@@ -21,14 +21,7 @@ export default class EssenAddComponent extends HTMLElement {
         const form = this.dom.addEssenForm;
         form.addEventListener('submit', (event) => {
             event.preventDefault();
-
-            if (this.dom.name === '') {
-                alert('Bitte geben Sie einen Namen an.');
-                return;
-            }
-
-            let essen = new Essen(this.dom.name, this.dom.preis, this.dom.art);
-            this.addEssen(essen);
+            Essen.add(this.dom.name, this.dom.preis, this.dom.art);
         });
     }
 

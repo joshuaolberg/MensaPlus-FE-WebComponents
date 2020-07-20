@@ -1,4 +1,13 @@
+import EventBus from './eventbus.js'
+
 export default {
+    get ESSEN_CHANGE_EVENT() {
+        return 'onEssenChange';
+    },
+
+    get ESSEN_ADD_ACTION() {
+        return 'essenAddAction';
+    },
 
     get speisekarte() {
         return [
@@ -21,7 +30,8 @@ export default {
                 art: 'mit Fleisch'
             },
         ]
-    },
+    }
+    ,
 
     /*
     get speisekarte() {
@@ -42,8 +52,19 @@ export default {
     },
      */
 
-    add() {
-        console.log('add');
+    add(name, preis, art) {
+
+        let id = 5;
+        let essen = {id, name, preis, art}
+        this.speisekarte.push({id: 5, name: 'Test', preis: 5.5, art: 'mit Fleisch'});
+
+        let ce = new CustomEvent(this.ESSEN_CHANGE_EVENT, {
+            detail: {
+                action: this.ESSEN_ADD_ACTION,
+                essen: essen,
+            }
+        });
+        EventBus.dispatchEvent(ce);
     },
 
     update() {
@@ -53,4 +74,8 @@ export default {
     delete() {
         console.log('delete');
     },
+
+    createId() {
+        return 4;
+    }
 }

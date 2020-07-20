@@ -1,50 +1,30 @@
 import Template from './essen-list.template.js'
-import Essen from '../../../../data/essen.js'
+import EssenData from '../../../../data/essen.js'
+import EventBus from '../../../../data/eventbus.js'
 
 export default class EssenListComponent extends HTMLElement {
 
-    get api() {
-        return this.getAttribute('api');
-    }
-
     connectedCallback() {
         this.attachShadow({mode: 'open'});
-        this.shadowRoot.innerHTML = Template.render(Essen.speisekarte);
+        this.shadowRoot.innerHTML = Template.render();
         this.dom = Template.mapDOM(this.shadowRoot);
-    }
 
-    getSpeisekarte() {
-        const request = new XMLHttpRequest();
-        request.open('GET', this.api, true);
-        request.addEventListener('load', (event) => {
-            this.renderSpeisekarte(JSON.parse(event.target.response));
+        // Load Speisekarte
+        this.dom.speisekarte.innerHTML = Template.renderSpeisekarte(EssenData.speisekarte);
+
+        // Custom Eventlistener - always activates when essen gets added, deleted, updated etc.
+        EventBus.addEventListener(EssenData.ESSEN_CHANGE_EVENT, e => {
+            this.onEssenChange(e);
         });
-        request.send();
     }
 
-    /* LOOP - Maybe a bit unnecessary */
-    renderSpeisekarte(assets) {
-        let speisekarte = [];
-        for (let i = 0; i < assets.length; i++) {
-            speisekarte[i] = {
-                id: assets[i].id,
-                name: assets[i].name,
-                preis: assets[i].preis,
-                art: assets[i].art
-            };
+    onEssenChange(e) {
+        switch (e.detail.action) {
+            case EssenData.ESSEN_ADD_ACTION:
+                //this.dom.speisekarte.innerHTML = Template.renderSpeisekarte(EssenData.speisekarte);
+                this.dom.speisekarte.innerHTML += Template.renderEssen(e.detail.essen);
+                break;
         }
-
-        let content = '';
-        speisekarte.forEach(essen => {
-            content += '<div class="essen-item">' + '<h3>' + essen.name + '</h3>' +
-                '<ul>' +
-                '<li> <span>ID:</span> <a href="/speisekarte/' + essen.id + '">' + essen.id + '</a></li>' +
-                '<li> <span>Preis:</span> ' + essen.preis + '€</li>' +
-                '<li> <span>Art:</span> ' + essen.art + '</li>' +
-                '</ul>'
-                + '</div>';
-        });
-        this.dom.speisekarte.innerHTML = content;
     }
 }
 

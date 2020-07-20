@@ -1,29 +1,30 @@
 export default {
-    render(speisekarte) {
+    render() {
         return `${this.css()}
-                ${this.html(speisekarte)}`;
+                ${this.html()}`;
     },
 
     mapDOM(scope) {
         return {
-            speisekarte: scope.getElementById('speisekarte'),
+            speisekarte: scope.querySelector('#speisekarte'),
         }
     },
 
-    html(speisekarte) {
-        let content = `<h1>Speisekarte</h1>
-                            <div class="container">`;
+    html() {
+        return `<h1>Speisekarte</h1>
+                <div id="speisekarte"></div>`
+    },
 
-        speisekarte.forEach(essen => {
-            content += '<div class="essen-item">' + '<h3>' + essen.name + '</h3>' +
-                '<ul>' +
-                '<li> <span>ID:</span> <a href="/speisekarte/' + essen.id + '">' + essen.id + '</a></li>' +
-                '<li> <span>Preis:</span> ' + essen.preis + '€</li>' +
-                '<li> <span>Art:</span> ' + essen.art + '</li>' +
-                '</ul>'
-                + '</div>';
-        });
-        return content + '</div>';
+    renderSpeisekarte(speisekarte) {
+        let html = '';
+        for (let i = 0; i < speisekarte.length; i++) {
+            html += this.renderEssen(speisekarte[i]);
+        }
+        return html;
+    },
+
+    renderEssen(essen) {
+        return `<div class="essen-item">${essen.name}</div>`
     },
 
     css() {
