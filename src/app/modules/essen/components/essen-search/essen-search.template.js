@@ -16,6 +16,7 @@ export default {
                         <h1>Essen suchen</h1>
                         <label>Essen suchen: </label>
                         <input type="text" id="searchterm" value=""/>
+                        <button>Click me</button>
                     </div>
                  </div>
                 `

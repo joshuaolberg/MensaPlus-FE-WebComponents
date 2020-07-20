@@ -1,5 +1,5 @@
 import Template from './essen-list.template.js'
-import EssenSearchComponent from "../essen-search/essen-search.component.js";
+import Essen from '../../../../data/essen.js'
 
 export default class EssenListComponent extends HTMLElement {
 
@@ -9,9 +9,8 @@ export default class EssenListComponent extends HTMLElement {
 
     connectedCallback() {
         this.attachShadow({mode: 'open'});
-        this.shadowRoot.innerHTML = Template.render();
+        this.shadowRoot.innerHTML = Template.render(Essen.speisekarte);
         this.dom = Template.mapDOM(this.shadowRoot);
-        this.getSpeisekarte();
     }
 
     getSpeisekarte() {
@@ -52,3 +51,4 @@ export default class EssenListComponent extends HTMLElement {
 if (!customElements.get('mp-essen-list')) {
     customElements.define('mp-essen-list', EssenListComponent);
 }
+

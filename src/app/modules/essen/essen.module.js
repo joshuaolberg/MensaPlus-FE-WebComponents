@@ -1,13 +1,10 @@
-import EssenListComponent from './components/essen-list/essen-list.component.js'
-import EssenAddComponent from './components/essen-add/essen-add.component.js'
-import EssenSearchComponent from "./components/essen-search/essen-search.component.js";
+import Template from './essen.module.template.js';
 
 export default class EssenModule extends HTMLElement {
 
     connectedCallback() {
-        this.innerHTML = '<mp-essen-search searchterm=""></mp-essen-search> ' +
-            '<mp-essen-list api="http://localhost:8080/essen"></mp-essen-list> ' +
-            '<mp-essen-add api="http://localhost:8080/essen" name=""></mp-essen-add>'
+        this.attachShadow({mode: 'open'});
+        this.shadowRoot.innerHTML = Template.render();
     }
 }
 

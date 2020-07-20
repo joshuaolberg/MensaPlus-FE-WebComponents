@@ -29,13 +29,25 @@ export default class EssenSearchComponent extends HTMLElement {
         this.shadowRoot.addEventListener('change', (event) =>
             this.searchTerm = event.target.value
         )
+
+        this.shadowRoot.querySelector('button').addEventListener('click', e => {
+            const customEvent = new CustomEvent('myclick', {
+                bubbles: true,
+                composed: true,
+                detail: {message: 'hi', number: 5}
+            })
+            this.shadowRoot.dispatchEvent(customEvent);
+        });
     }
 
     doSearch() {
-        console.log('Moin');
     }
 }
 
 if (!customElements.get('mp-essen-search')) {
     customElements.define('mp-essen-search', EssenSearchComponent);
 }
+
+document.addEventListener('myclick', (e) => {
+    console.log('was clicked', e.target, e.currentTarget, e.composedPath());
+});

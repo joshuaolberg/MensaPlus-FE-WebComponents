@@ -1,3 +1,15 @@
-h3 {
-    font-size: 500px;
+:root {
+    --text-color: #3a3a3a;
+    --label-color: #2a2a2a;
+    --font: 'Roboto Slab', sans-serif;
+}
+
+body {
+    margin: 5px;
+    padding: 5px;
+}
+
+mp-app-root {
+    height: calc(100vh - 20px);
+    padding: 10px;
 }

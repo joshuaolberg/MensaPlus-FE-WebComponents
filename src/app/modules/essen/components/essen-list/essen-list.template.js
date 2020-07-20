@@ -1,7 +1,7 @@
 export default {
-    render() {
+    render(speisekarte) {
         return `${this.css()}
-                ${this.html()}`;
+                ${this.html(speisekarte)}`;
     },
 
     mapDOM(scope) {
@@ -10,20 +10,31 @@ export default {
         }
     },
 
-    html() {
-        return `<h1>Speisekarte</h1>
-                 <div class="row">
-                    <div class="container">
-                        <div id="speisekarte"></div>
-                    </div>
-                 </div>
-                `
+    html(speisekarte) {
+        let content = `<h1>Speisekarte</h1>
+                            <div class="container">`;
+
+        speisekarte.forEach(essen => {
+            content += '<div class="essen-item">' + '<h3>' + essen.name + '</h3>' +
+                '<ul>' +
+                '<li> <span>ID:</span> <a href="/speisekarte/' + essen.id + '">' + essen.id + '</a></li>' +
+                '<li> <span>Preis:</span> ' + essen.preis + '€</li>' +
+                '<li> <span>Art:</span> ' + essen.art + '</li>' +
+                '</ul>'
+                + '</div>';
+        });
+        return content + '</div>';
     },
 
     css() {
         return `<style>
+                   :host {
+                        display: inline-block;
+                        font-family: var(--font);
+                   }
+
                     h1 {
-                    color: blue;
+                        color: blue;
                     }
                 </style>`;
     }
