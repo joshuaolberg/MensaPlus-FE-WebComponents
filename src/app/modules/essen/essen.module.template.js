@@ -10,31 +10,14 @@ export default {
 
     html() {
         return `<mp-essen-search searchterm=""></mp-essen-search>
-                <div id="divider-line"></div>
-                <mp-essen-list api="http://localhost:8080/essen"></mp-essen-list>
-                <div id="divider-line"></div>
-                <mp-essen-add api="http://localhost:8080/essen" name=""></mp-essen-add>`;
+                <mp-essen-list></mp-essen-list>
+                <mp-essen-add></mp-essen-add>`;
     },
 
     css() {
         return `<style>
                     :host {
-                       display: flex;
-                    }
-                    
-                    mp-essen-list,
-                    mp-essen-search,
-                    mp-essen-add {
-                        flex: 1;
-                        height: 100%;
-                        background-color: #eaeaea;
-                    }
-                    
-                    #divider-line {
-                        width: 1px;
-                        height: 100%;
-                        margin-right: 25px;
-                        background-color: black;
+                       //display: flex;
                     }
                 </style>`;
     }

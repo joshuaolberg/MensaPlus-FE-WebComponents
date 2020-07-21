@@ -61,7 +61,7 @@ export default {
 
     addEssen(name, preis, art) {
         const url = 'http://localhost:8080/essen';
-        let essen = {name: name, preis: preis, art: art};
+        let essen = {id: this.createId(), name: name, preis: preis, art: art};
 
         return fetch(url, {
             method: 'POST',
@@ -88,4 +88,8 @@ export default {
     delete() {
         console.log('delete');
     },
+
+    createId() {
+        return 18;
+    }
 }

@@ -21,7 +21,7 @@ export default class EssenListComponent extends HTMLElement {
     onEssenChange(e) {
         switch (e.detail.action) {
             case EssenData.ESSEN_LOAD_ACTION:
-                this.dom.speisekarte.innerHTML += Template.renderSpeisekarte(e.detail.speisekarte);
+                this.dom.speisekarte.innerHTML = Template.renderSpeisekarte(e.detail.speisekarte);
                 break;
             case EssenData.ESSEN_ADD_ACTION:
                 this.dom.speisekarte.innerHTML += Template.renderEssen(e.detail.essen);
