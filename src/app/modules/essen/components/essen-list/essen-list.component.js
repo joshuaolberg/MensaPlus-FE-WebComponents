@@ -9,10 +9,10 @@ export default class EssenListComponent extends HTMLElement {
         this.shadowRoot.innerHTML = Template.render();
         this.dom = Template.mapDOM(this.shadowRoot);
 
-        // Load Speisekarte
+        // Load Speisekarte on init
         this.dom.speisekarte.innerHTML = Template.renderSpeisekarte(EssenData.speisekarte);
 
-        // Custom Eventlistener - always activates when essen gets added, deleted, updated etc.
+        // Custom Eventlistener - always triggers when essen gets added, deleted, updated etc.
         EventBus.addEventListener(EssenData.ESSEN_CHANGE_EVENT, e => {
             this.onEssenChange(e);
         });
@@ -20,8 +20,10 @@ export default class EssenListComponent extends HTMLElement {
 
     onEssenChange(e) {
         switch (e.detail.action) {
+            case EssenData.ESSEN_LOAD_ACTION:
+                this.dom.speisekarte.innerHTML += Template.renderSpeisekarte(e.detail.speisekarte);
+                break;
             case EssenData.ESSEN_ADD_ACTION:
-                //this.dom.speisekarte.innerHTML = Template.renderSpeisekarte(EssenData.speisekarte);
                 this.dom.speisekarte.innerHTML += Template.renderEssen(e.detail.essen);
                 break;
         }

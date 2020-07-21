@@ -5,40 +5,43 @@ export default {
         return 'onEssenChange';
     },
 
+    get ESSEN_LOAD_ACTION() {
+        return 'essenLoadAction';
+    },
+
     get ESSEN_ADD_ACTION() {
         return 'essenAddAction';
     },
 
-    get speisekarte() {
-        return [
-            {
-                id: 1,
-                name: 'Burger',
-                preis: 7.50,
-                art: 'mit Fleisch'
-            },
-            {
-                id: 2,
-                name: 'Fischburger',
-                preis: 10.50,
-                art: 'mit Fisch'
-            },
-            {
-                id: 3,
-                name: 'Lasagne',
-                preis: 12.50,
-                art: 'mit Fleisch'
-            },
-        ]
-    }
-    ,
-
     /*
+        get speisekarte() {
+            return [
+                {
+                    id: 1,
+                    name: 'Burger',
+                    preis: 7.50,
+                    art: 'mit Fleisch'
+                },
+                {
+                    id: 2,
+                    name: 'Fischburger',
+                    preis: 10.50,
+                    art: 'mit Fisch'
+                },
+                {
+                    id: 3,
+                    name: 'Lasagne',
+                    preis: 12.50,
+                    art: 'mit Fleisch'
+                },
+            ]
+        },
+    */
+
     get speisekarte() {
         const url = 'http://localhost:8080/essen';
-        let speisekarte = [];
 
-        fetch(url, {
+        return fetch(url, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -46,25 +49,36 @@ export default {
         }).then(res => {
             return res.json()
         }).then(data => {
-            speisekarte = data;
+            let ce = new CustomEvent(this.ESSEN_CHANGE_EVENT, {
+                detail: {
+                    action: this.ESSEN_LOAD_ACTION,
+                    speisekarte: data,
+                }
+            });
+            EventBus.dispatchEvent(ce);
         });
-        return speisekarte;
     },
-     */
 
-    add(name, preis, art) {
+    addEssen(name, preis, art) {
+        const url = 'http://localhost:8080/essen';
+        let essen = {name: name, preis: preis, art: art};
 
-        let id = 5;
-        let essen = {id, name, preis, art}
-        this.speisekarte.push({id: 5, name: 'Test', preis: 5.5, art: 'mit Fleisch'});
-
-        let ce = new CustomEvent(this.ESSEN_CHANGE_EVENT, {
-            detail: {
-                action: this.ESSEN_ADD_ACTION,
-                essen: essen,
-            }
+        return fetch(url, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(essen),
+        }).then(() => {
+            let ce = new CustomEvent(this.ESSEN_CHANGE_EVENT, {
+                detail: {
+                    action: this.ESSEN_ADD_ACTION,
+                    essen: essen,
+                }
+            });
+            EventBus.dispatchEvent(ce);
         });
-        EventBus.dispatchEvent(ce);
     },
 
     update() {
@@ -74,8 +88,4 @@ export default {
     delete() {
         console.log('delete');
     },
-
-    createId() {
-        return 4;
-    }
 }
