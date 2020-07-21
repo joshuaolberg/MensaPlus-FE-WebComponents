@@ -1,4 +1,6 @@
 import Template from './essen-detail.template.js'
+import EssenService from '../../../../data/essen.js'
+import EventBus from '../../../../data/eventbus.js'
 
 export default class EssenDetailComponent extends HTMLElement {
 
@@ -14,28 +16,23 @@ export default class EssenDetailComponent extends HTMLElement {
         this.attachShadow({mode: 'open'});
         this.shadowRoot.innerHTML = Template.render();
         this.dom = Template.mapDOM(this.shadowRoot);
-        this.getEssenById(this.id);
+
+        // Load on init
+        this.dom.essenDetails.innerHTML = Template.renderEssen(EssenService.getEssenById(this.id));
 
         this.dom.btnGoBack.addEventListener('click', () => window.history.back());
-    }
 
-    getEssenById(id) {
-        const request = new XMLHttpRequest();
-        request.open('GET', this.api + id);
-        request.addEventListener('load', (event) => {
-            this.renderEssen(JSON.parse(event.target.response));
+        EventBus.addEventListener(EssenService.ESSEN_CHANGE_EVENT, e => {
+            this.onEssenChange(e);
         });
-        request.send();
     }
 
-    renderEssen(essen) {
-        this.dom.essenDetails.innerHTML = '<h1>' + essen.name + ' Details</h1>' +
-            '<ul>' +
-            '<li> <span>ID: </span>' + essen.id + '</li>' +
-            '<li> <span>Name: </span>' + essen.name + '</li>' +
-            '<li> <span>Preis: </span>' + essen.preis + '€</li>' +
-            '<li> <span>Art: </span>' + essen.art + '</li>' +
-            '</ul>';
+    onEssenChange(e) {
+        switch (e.detail.action) {
+            case EssenService.ESSEN_DETAIL_LOAD_ACTION:
+                this.dom.essenDetails.innerHTML = Template.renderEssen(e.detail.essen);
+                break;
+        }
     }
 }
 

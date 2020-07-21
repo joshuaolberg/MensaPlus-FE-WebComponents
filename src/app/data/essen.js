@@ -1,12 +1,21 @@
 import EventBus from './eventbus.js'
 
 export default {
+
+    get api() {
+        return 'http://localhost:8080/essen/'
+    },
+
     get ESSEN_CHANGE_EVENT() {
         return 'onEssenChange';
     },
 
     get ESSEN_LOAD_ACTION() {
         return 'essenLoadAction';
+    },
+
+    get ESSEN_DETAIL_LOAD_ACTION() {
+        return 'essenDetailLoadAction';
     },
 
     get ESSEN_ADD_ACTION() {
@@ -39,15 +48,13 @@ export default {
     */
 
     get speisekarte() {
-        const url = 'http://localhost:8080/essen';
-
-        return fetch(url, {
+        return fetch(this.api, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             },
         }).then(res => {
-            return res.json()
+            return res.json();
         }).then(data => {
             let ce = new CustomEvent(this.ESSEN_CHANGE_EVENT, {
                 detail: {
@@ -59,22 +66,42 @@ export default {
         });
     },
 
-    addEssen(name, preis, art) {
-        const url = 'http://localhost:8080/essen';
-        let essen = {id: this.createId(), name: name, preis: preis, art: art};
+    getEssenById(id) {
+        return fetch(this.api + id, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        }).then(res => {
+            return res.json();
+        }).then(data => {
+            let ce = new CustomEvent(this.ESSEN_CHANGE_EVENT, {
+                detail: {
+                    action: this.ESSEN_DETAIL_LOAD_ACTION,
+                    essen: data,
+                }
+            });
+            EventBus.dispatchEvent(ce);
+        })
+    },
 
-        return fetch(url, {
+    addEssen(name, preis, art) {
+        let essen = {name: name, preis: preis, art: art};
+
+        return fetch(this.api, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(essen),
-        }).then(() => {
+        }).then(res => {
+            return res.json();
+        }).then(data => {
             let ce = new CustomEvent(this.ESSEN_CHANGE_EVENT, {
                 detail: {
                     action: this.ESSEN_ADD_ACTION,
-                    essen: essen,
+                    essen: data,
                 }
             });
             EventBus.dispatchEvent(ce);
@@ -88,8 +115,4 @@ export default {
     delete() {
         console.log('delete');
     },
-
-    createId() {
-        return 18;
-    }
 }

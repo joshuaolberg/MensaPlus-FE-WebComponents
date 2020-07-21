@@ -61,7 +61,7 @@ export default {
                         border-radius: 25px;
                         margin-top: 10px;
                         min-height: 30px;
-                        padding: 10px;
+                        padding: 4px;
                     }
                     
                     ul li span {
@@ -72,7 +72,7 @@ export default {
                     }
                    
                     ul li span.id {
-                        width: 40px;
+                        width: 50px;
                     }
                     
                     ul li span.name {

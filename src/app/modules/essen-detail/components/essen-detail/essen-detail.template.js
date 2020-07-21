@@ -12,10 +12,21 @@ export default {
     },
 
     html() {
-        return `<h1 id="essen-name"></h1>
-                <div id="essen-details"></div>
+        return `<div id="essen-details"></div>
                 <button id="go-back">Zurück</button>
                 `
+    },
+
+    renderEssen(essen) {
+        return `<h1>${essen.name} Details</h1>
+                <ul>
+                    <li><span>ID: </span>${essen.id}</li>
+                    <li><span>Name: </span>${essen.name}</li>
+                    <li><span>Preis: </span>${essen.preis}€</li>
+                    <li><span>Art: </span>${essen.art}</li>                          
+                </ul>
+                `
+
     },
 
     css() {
