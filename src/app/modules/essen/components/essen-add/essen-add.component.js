@@ -17,39 +17,11 @@ export default class EssenAddComponent extends HTMLElement {
             this.dom = Template.mapDOM(this.shadowRoot)
         );
 
-        // Form Eventlistener
         const form = this.dom.addEssenForm;
         form.addEventListener('submit', (event) => {
             event.preventDefault();
-
-            if (this.dom.name === '') {
-                alert('Bitte geben Sie einen Namen an.');
-                return;
-            }
-
-            let essen = new Essen(this.dom.name, this.dom.preis, this.dom.art);
-            this.addEssen(essen);
+            Essen.addEssen(this.dom.name, this.dom.preis, this.dom.art);
         });
-    }
-
-    addEssen(essen) {
-        const request = new XMLHttpRequest();
-        request.open('POST', this.api, true);
-        request.setRequestHeader("Content-Type", "application/json");
-
-        // Check if success
-        request.onreadystatechange = function () {
-            if (request.readyState === 4 && request.status === 200) {
-                alert('Essen wurde hinzugefügt');
-            }
-        }
-        request.send(JSON.stringify(essen));
-
-        this.shadowRoot.getElementById('success').classList.add('active');
-        //this.EssenListComponent.getSpeisekarte();
-        setTimeout(function () {
-            location.reload()
-        }, 500);
     }
 }
 
