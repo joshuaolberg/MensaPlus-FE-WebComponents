@@ -1,12 +1,8 @@
 import Template from './essen-update.template.js'
-import Essen from "../../../../classes/essen.js";
+import EssenService from "../../../../data/essen.service.js";
+import EventBus from '../../../../data/eventbus.js'
 
-// TODO:  Reload Essen-Detail when saved or fix page reload
 export default class EssenUpdateComponent extends HTMLElement {
-
-    get api() {
-        return this.getAttribute('api');
-    }
 
     get id() {
         return this.getAttribute('id');
@@ -16,51 +12,36 @@ export default class EssenUpdateComponent extends HTMLElement {
         this.attachShadow({mode: 'open'});
         this.shadowRoot.innerHTML = Template.render();
         this.dom = Template.mapDOM(this.shadowRoot);
-        this.dom.essenId.innerHTML = this.id;
-        this.getEssenById(this.id);
+        EssenService.getEssenById(this.id);
 
-        // Change Eventlistener
         this.shadowRoot.addEventListener('change', () =>
             this.dom = Template.mapDOM(this.shadowRoot)
         );
 
         this.dom.form.addEventListener('submit', (event) => {
             event.preventDefault();
-            let essen = {id: this.id, name: this.dom.name, preis: this.dom.preis, art: this.dom.art};
-            this.updateEssen(essen);
+            EssenService.updateEssen(this.id, this.dom.name, this.dom.preis, this.dom.art).then(() => {
+                this.shadowRoot.getElementById('success').classList.add('active');
+            });
+        });
+
+        EventBus.addEventListener(EssenService.ESSEN_DETAIL_CHANGE_EVENT, e => {
+            this.onEssenChange(e);
         });
     }
 
-    getEssenById(id) {
-        const request = new XMLHttpRequest();
-        request.open('GET', this.api + id);
-        request.addEventListener('load', (event) => {
-            this.renderEssen(JSON.parse(event.target.response));
-        });
-        request.send();
-    }
-
-    renderEssen(essen) {
-        let name = this.shadowRoot.getElementById('name');
-        let preis = this.shadowRoot.getElementById('preis');
-        let art = this.shadowRoot.getElementById('art');
-
-        name.value = essen.name;
-        preis.value = essen.preis;
-        art.value = essen.art;
-    }
-
-    updateEssen(essen) {
-        const request = new XMLHttpRequest();
-        request.open('PUT', this.api);
-        request.setRequestHeader("Content-Type", "application/json");
-        request.addEventListener('load', (event) => alert('Essen erfolgreich gespeichert'));
-        request.send(JSON.stringify(essen));
-
-        this.shadowRoot.getElementById('success').classList.add('active');
-        setTimeout(function () {
-            location.reload()
-        }, 500);
+    onEssenChange(e) {
+        switch (e.detail.action) {
+            case EssenService.ESSEN_DETAIL_LOAD_ACTION:
+                this.dom.essenId.innerHTML = this.id;
+                let name = this.shadowRoot.getElementById('name');
+                let preis = this.shadowRoot.getElementById('preis');
+                let art = this.shadowRoot.getElementById('art');
+                name.value = e.detail.essen.name;
+                preis.value = e.detail.essen.preis;
+                art.value = e.detail.essen.art;
+                break;
+        }
     }
 }
 

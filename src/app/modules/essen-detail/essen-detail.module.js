@@ -3,12 +3,13 @@ import Template from './essen-detail.module.template.js'
 export default class EssenDetailModule extends HTMLElement {
 
     onAfterEnter(context) {
+        this.attachShadow({mode: 'open'});
         this.renderEssenDetail({id: context.params.id});
     }
 
     renderEssenDetail(props) {
         let id = props.id;
-        this.innerHTML = Template.render(id);
+        this.shadowRoot.innerHTML = Template.render(id);
     }
 }
 

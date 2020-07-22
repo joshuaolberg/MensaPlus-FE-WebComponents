@@ -17,7 +17,7 @@ export default {
     css() {
         return `<style>
                     :host {
-                       //display: flex;
+                        font-family: var(--font), sans-serif;
                     }
                 </style>`;
     }

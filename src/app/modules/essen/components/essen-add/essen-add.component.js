@@ -1,5 +1,5 @@
 import Template from './essen-add.template.js'
-import EssenService from "../../../../data/essen.js";
+import EssenService from "../../../../data/essen.service.js";
 
 // TODO: success message
 export default class EssenAddComponent extends HTMLElement {
@@ -17,7 +17,9 @@ export default class EssenAddComponent extends HTMLElement {
         const form = this.dom.addEssenForm;
         form.addEventListener('submit', (event) => {
             event.preventDefault();
-            EssenService.addEssen(this.dom.name, this.dom.preis, this.dom.art).then();
+            EssenService.addEssen(this.dom.name, this.dom.preis, this.dom.art).then(() => {
+                this.shadowRoot.getElementById('success').classList.add('active');
+            });
         });
     }
 }

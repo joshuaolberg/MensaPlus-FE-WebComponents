@@ -10,6 +10,10 @@ export default {
         return 'onEssenChange';
     },
 
+    get ESSEN_DETAIL_CHANGE_EVENT() {
+        return 'onEssenDetailChange';
+    },
+
     get ESSEN_LOAD_ACTION() {
         return 'essenLoadAction';
     },
@@ -20,6 +24,14 @@ export default {
 
     get ESSEN_ADD_ACTION() {
         return 'essenAddAction';
+    },
+
+    get ESSEN_DETAIL_UPDATE_ACTION() {
+        return 'essenDetailUpdateAction';
+    },
+
+    get ESSEN_DETAIL_DELETE_ACTION() {
+        return 'ESSEN_DETAIL_DELETE_ACTION';
     },
 
     /*
@@ -75,7 +87,7 @@ export default {
         }).then(res => {
             return res.json();
         }).then(data => {
-            let ce = new CustomEvent(this.ESSEN_CHANGE_EVENT, {
+            let ce = new CustomEvent(this.ESSEN_DETAIL_CHANGE_EVENT, {
                 detail: {
                     action: this.ESSEN_DETAIL_LOAD_ACTION,
                     essen: data,
@@ -108,11 +120,41 @@ export default {
         });
     },
 
-    update() {
-        console.log('update');
+    updateEssen(id, name, preis, art) {
+        let essen = {id: id, name: name, preis: preis, art: art}
+
+        return fetch(this.api, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(essen)
+        }).then(res => {
+            return res.json();
+        }).then(data => {
+            let ce = new CustomEvent(this.ESSEN_DETAIL_CHANGE_EVENT, {
+                detail: {
+                    action: this.ESSEN_DETAIL_UPDATE_ACTION,
+                    essen: data,
+                }
+            });
+            EventBus.dispatchEvent(ce);
+        });
     },
 
-    delete() {
-        console.log('delete');
+    deleteEssenById(id) {
+        return fetch(this.api + id, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }).then(() => {
+            let ce = new CustomEvent(this.ESSEN_DETAIL_CHANGE_EVENT, {
+                detail: {
+                    action: this.ESSEN_DETAIL_DELETE_ACTION,
+                }
+            });
+            EventBus.dispatchEvent(ce);
+        });
     },
 }

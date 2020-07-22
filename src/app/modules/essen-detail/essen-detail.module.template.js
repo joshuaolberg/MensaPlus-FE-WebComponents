@@ -9,15 +9,15 @@ export default {
     },
 
     html(id) {
-        return '<mp-essen-detail api="http://localhost:8080/essen/" id=' + id + '></mp-essen-detail>' +
-            '<mp-essen-update api="http://localhost:8080/essen/" id=' + id + '></mp-essen-update>' +
-            '<mp-essen-delete api="http://localhost:8080/essen/" id=' + id + '></mp-essen-delete>'
+        return `<mp-essen-detail id=${id}></mp-essen-detail>
+                <mp-essen-update id=${id}></mp-essen-update>
+                <mp-essen-delete id=${id}></mp-essen-delete>`
     },
 
     css() {
         return `<style>
                     :host {
-                       //display: flex;
+                        font-family: var(--font), sans-serif;
                     }
                 </style>`;
     }

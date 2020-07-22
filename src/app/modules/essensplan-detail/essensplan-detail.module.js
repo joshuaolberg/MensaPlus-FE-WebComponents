@@ -1,21 +1,15 @@
-import './components/essensplan-detail/essensplan-detail.component.js'
-import './components/essensplan-delete/essensplan-delete.component.js'
-import './components/essensplan-update/essensplan-update.component.js'
-import './components/essensplan-add-essen/essensplan-add-essen.component.js'
-import './components/essensplan-remove-essen/essensplan-remove-essen.component.js'
+import Template from "./essensplan-detail.module.template.js";
 
 export default class EssensplanDetailModule extends HTMLElement {
 
     onAfterEnter(context) {
+        this.attachShadow({mode: 'open'});
         this.renderEssensplanDetail({id: context.params.id});
     }
 
     renderEssensplanDetail(props) {
-        this.innerHTML = '<mp-essensplan-detail api="http://localhost:8080/essensplan/" id=' + props.id + '></mp-essensplan-detail>' +
-            '<mp-essensplan-update api="http://localhost:8080/essensplan/" id=' + props.id + '></mp-essensplan-update>' +
-            '<mp-essensplan-delete api="http://localhost:8080/essensplan/" id=' + props.id + '></mp-essensplan-delete>' +
-            '<mp-essensplan-add-essen api="http://localhost:8080/essensplan/" id=' + props.id + '></mp-essensplan-add-essen>' +
-            '<mp-essensplan-remove-essen api="http://localhost:8080/essensplan/" id=' + props.id + '></mp-essensplan-remove-essen>'
+        let id = props.id;
+        this.shadowRoot.innerHTML = Template.render(id);
     }
 }
 

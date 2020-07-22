@@ -25,7 +25,7 @@ export default {
                                 </div>
                                 <div class="form-group">
                                     <label for="preis">Preis</label>
-                                    <input class="form-control" id="preis" type="number">
+                                    <input class="form-control" id="preis" type="number" min="0.00" step="0.01" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="art">Art</label>

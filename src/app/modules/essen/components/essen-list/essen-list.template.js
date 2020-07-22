@@ -22,7 +22,7 @@ export default {
         for (let i = 0; i < speisekarte.length; i++) {
             html += this.renderEssen(speisekarte[i]);
         }
-        return html + '';
+        return html;
     },
 
     renderEssen(essen) {
@@ -36,7 +36,6 @@ export default {
     css() {
         return `<style>
                    :host {
-                        font-family: var(--font);
                         display: block;
                         margin: 0;
                         padding: 0;

@@ -1,4 +1,6 @@
 import Template from './essensplan-list.template.js'
+import EssensplanService from '../../../../data/essensplan.service.js'
+import EventBus from '../../../../data/eventbus.js'
 
 export default class EssensplanListComponent extends HTMLElement {
 
@@ -10,8 +12,22 @@ export default class EssensplanListComponent extends HTMLElement {
         this.attachShadow({mode: 'open'});
         this.shadowRoot.innerHTML = Template.render();
         this.dom = Template.mapDOM(this.shadowRoot);
-        this.getEssensplan();
+
+        this.dom.essensplan.innerHTML = Template.renderAll(EssensplanService.essensplan);
+
+        EventBus.addEventListener(EssensplanService.ESSENSPLAN_CHANGE_EVENT, e => {
+            this.onEssensplanChange(e);
+        });
     }
+
+    onEssensplanChange(e) {
+        switch (e.detail.action) {
+            case EssensplanService.ESSENSPLAN_LOAD_ACTION:
+                this.dom.essensplan.innerHTML = Template.renderAll(e.detail.essensplan);
+                break;
+        }
+    }
+
 
     getEssensplan() {
         const request = new XMLHttpRequest();

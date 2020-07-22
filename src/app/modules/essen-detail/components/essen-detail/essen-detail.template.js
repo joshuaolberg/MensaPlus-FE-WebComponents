@@ -6,13 +6,13 @@ export default {
 
     mapDOM(scope) {
         return {
-            essenDetails: scope.getElementById('essen-details'),
+            essenDetails: scope.querySelector('#essen-detail'),
             btnGoBack: scope.getElementById('go-back'),
         }
     },
 
     html() {
-        return `<div id="essen-details"></div>
+        return `<div id="essen-detail"></div>
                 <button id="go-back">Zurück</button>
                 `
     },
@@ -26,14 +26,17 @@ export default {
                     <li><span>Art: </span>${essen.art}</li>                          
                 </ul>
                 `
-
     },
 
     css() {
         return `<style>
-                    h1 {
-                    color: red;
-                    }
+                   :host {
+                        font-family: var(--font);
+                        display: block;
+                        margin: 0;
+                        padding: 0;
+                        max-width: 100%;
+                   }
                 </style>`;
     }
 }

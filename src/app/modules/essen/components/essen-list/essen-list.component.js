@@ -1,8 +1,7 @@
 import Template from './essen-list.template.js'
-import EssenService from '../../../../data/essen.js'
+import EssenService from '../../../../data/essen.service.js'
 import EventBus from '../../../../data/eventbus.js'
 
-// TODO: addEssen does not push a single essen. It renders Speisekarte again.
 export default class EssenListComponent extends HTMLElement {
 
     connectedCallback() {

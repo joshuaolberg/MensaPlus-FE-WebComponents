@@ -1,12 +1,8 @@
 import Template from './essen-detail.template.js'
-import EssenService from '../../../../data/essen.js'
+import EssenService from '../../../../data/essen.service.js'
 import EventBus from '../../../../data/eventbus.js'
 
 export default class EssenDetailComponent extends HTMLElement {
-
-    get api() {
-        return this.getAttribute('api');
-    }
 
     get id() {
         return this.getAttribute('id');
@@ -22,7 +18,7 @@ export default class EssenDetailComponent extends HTMLElement {
 
         this.dom.btnGoBack.addEventListener('click', () => window.history.back());
 
-        EventBus.addEventListener(EssenService.ESSEN_CHANGE_EVENT, e => {
+        EventBus.addEventListener(EssenService.ESSEN_DETAIL_CHANGE_EVENT, e => {
             this.onEssenChange(e);
         });
     }
@@ -32,6 +28,8 @@ export default class EssenDetailComponent extends HTMLElement {
             case EssenService.ESSEN_DETAIL_LOAD_ACTION:
                 this.dom.essenDetails.innerHTML = Template.renderEssen(e.detail.essen);
                 break;
+            case EssenService.ESSEN_DETAIL_UPDATE_ACTION:
+                this.dom.essenDetails.innerHTML = Template.renderEssen(e.detail.essen);
         }
     }
 }
