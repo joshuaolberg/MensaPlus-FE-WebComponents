@@ -14,7 +14,9 @@ export default {
     html() {
         return `<h1 id="essen-name"></h1>
                 <div id="essensplan-details"></div>
-                <button id="go-back">Zurück</button>
+                <div class="text-center">
+                    <button id="go-back">Zurück</button>
+                </div>
                 `
     },
 
@@ -77,6 +79,9 @@ export default {
                         font-weight: bold;
                     }
                     
+                    .text-center {
+                        text-align: center;
+                    }
                 </style>`;
     }
 }

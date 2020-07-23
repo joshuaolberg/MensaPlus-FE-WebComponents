@@ -133,7 +133,6 @@ export default {
         }).then(res => {
             return res.json();
         }).then(data => {
-            console.log(data);
             let ce = new CustomEvent(this.ESSEN_DETAIL_CHANGE_EVENT, {
                 detail: {
                     action: this.ESSEN_DETAIL_UPDATE_ACTION,
