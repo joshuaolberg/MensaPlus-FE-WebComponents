@@ -6,6 +6,8 @@ export default {
 
     mapDOM(scope) {
         return {
+            container: scope.getElementById('container'),
+            login: scope.getElementById('login'),
             form: scope.getElementById('loginForm'),
             username: scope.getElementById('username').value,
             password: scope.getElementById('password').value,
@@ -13,27 +15,27 @@ export default {
     },
 
     html() {
-        return `
-                <h2>Login</h2>
-                <div class="container">
-                    <div class="row">
-                        <div id="login">
-                            <form id="loginForm">
-                                <div class="form-group">
-                                    <label for="username">Benutzername</label>
-                                    <input class="form-control" id="username" type="text" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Passwort</label>
-                                    <input class="form-control" id="password" type="password" required>
-                                </div>
-                                <div id="success" class="success">Essensplan erfolgreich gespeichert.</div>
-                                <button id="submit" class="btn" type="submit">Login</button>
-                            </form>                
+        return `<div id="container">
+                <div id="login">
+                    <h2>Login</h2>
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="username">Benutzername</label>
+                             <input class="form-control" id="username" type="text" required>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <label for="password">Passwort</label>
+                            <input class="form-control" id="password" type="password" required>
+                        </div>
+                        <div id="success" class="success">Sie haben sich erfolgreich angemeldet.</div>
+                        <button id="submit" class="btn" type="submit">Login</button>
+                    </form>
                 </div>
                 `
+    },
+
+    renderAlreadyLoggedIn() {
+        return `<p>Sie sind bereits eingeloggt.</p>`
     },
 
     css() {
@@ -44,6 +46,10 @@ export default {
                                     
                     .active {
                         display: block;
+                    }
+                    
+                    .hidden {
+                        display: none;
                     }
                 </style>`;
     }

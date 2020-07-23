@@ -31,7 +31,7 @@ export default {
     },
 
     get ESSEN_DETAIL_DELETE_ACTION() {
-        return 'ESSEN_DETAIL_DELETE_ACTION';
+        return 'essenDetailDeleteAction';
     },
 
     /*
@@ -146,9 +146,6 @@ export default {
     deleteEssenById(id) {
         return fetch(this.api + id, {
             method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            },
         }).then(() => {
             let ce = new CustomEvent(this.ESSEN_DETAIL_CHANGE_EVENT, {
                 detail: {

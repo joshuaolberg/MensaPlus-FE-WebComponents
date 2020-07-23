@@ -9,8 +9,11 @@ export default {
     },
 
     html(id) {
-        return `<mp-essen-detail id=${id}></mp-essen-detail>
-                <mp-essen-update id=${id}></mp-essen-update>
+        return `<mp-essen-detail id=${id}></mp-essen-detail>`
+    },
+
+    renderAdminFeatures(id) {
+        return `<mp-essen-update id=${id}></mp-essen-update>
                 <mp-essen-delete id=${id}></mp-essen-delete>`
     },
 

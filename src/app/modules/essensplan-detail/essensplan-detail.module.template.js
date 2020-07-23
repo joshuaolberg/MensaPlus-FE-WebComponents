@@ -11,11 +11,14 @@ export default {
     },
 
     html(id) {
-        return `<mp-essensplan-detail api="http://localhost:8080/essensplan/" id=${id}></mp-essensplan-detail>
-                <mp-essensplan-update api="http://localhost:8080/essensplan/" id=${id}></mp-essensplan-update>
-                <mp-essensplan-delete api="http://localhost:8080/essensplan/" id=${id}></mp-essensplan-delete>
-                <mp-essensplan-add-essen api="http://localhost:8080/essensplan/" id=${id}></mp-essensplan-add-essen>
-                <mp-essensplan-remove-essen api="http://localhost:8080/essensplan/" id=${id}></mp-essensplan-remove-essen>`;
+        return `<mp-essensplan-detail id=${id}></mp-essensplan-detail>`;
+    },
+
+    renderAdminFeatures(id) {
+        return `<mp-essensplan-update id=${id}></mp-essensplan-update>
+                <mp-essensplan-delete id=${id}></mp-essensplan-delete>
+                <mp-essensplan-add-essen id=${id}></mp-essensplan-add-essen>
+                <mp-essensplan-remove-essen id=${id}></mp-essensplan-remove-essen>`;
     },
 
     css() {

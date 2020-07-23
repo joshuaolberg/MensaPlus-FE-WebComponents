@@ -31,6 +31,12 @@ export default class EssensplanDetailComponent extends HTMLElement {
             case EssensplanService.ESSENSPLAN_DETAIL_UPDATE_ACTION:
                 this.dom.essensplanDetails.innerHTML = Template.renderEssensplan(e.detail.essensplan);
                 break;
+            case EssensplanService.ESSENSPLAN_DETAIL_ADD_ESSEN_ACTION:
+                this.dom.essensplanDetails.innerHTML = Template.renderEssensplan(e.detail.essensplan);
+                break;
+            case EssensplanService.ESSENSPLAN_DETAIL_REMOVE_ESSEN_ACTION:
+                this.dom.essensplanDetails.innerHTML = Template.renderEssensplan(e.detail.essensplan);
+                break;
         }
     }
 }

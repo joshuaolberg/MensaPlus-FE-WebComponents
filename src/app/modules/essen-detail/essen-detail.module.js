@@ -1,4 +1,5 @@
 import Template from './essen-detail.module.template.js'
+import AuthenticationService from "../../data/authentication.service.js";
 
 export default class EssenDetailModule extends HTMLElement {
 
@@ -10,6 +11,10 @@ export default class EssenDetailModule extends HTMLElement {
     renderEssenDetail(props) {
         let id = props.id;
         this.shadowRoot.innerHTML = Template.render(id);
+
+        if (AuthenticationService.isAdmin() === true) {
+            this.shadowRoot.innerHTML += Template.renderAdminFeatures(id);
+        }
     }
 }
 

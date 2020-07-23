@@ -1,5 +1,5 @@
 import Template from './essensplan-add.template.js'
-import Essensplan from '../../../../data/essensplan.service.js'
+import EssensplanService from '../../../../data/essensplan.service.js'
 
 export default class EssensplanAddComponent extends HTMLElement {
 
@@ -15,7 +15,7 @@ export default class EssensplanAddComponent extends HTMLElement {
         const form = this.dom.addEssensplanForm;
         form.addEventListener('submit', (event) => {
             event.preventDefault();
-            Essensplan.addEssensplan(this.dom.kalenderwoche).then(() => {
+            EssensplanService.addEssensplan(this.dom.kalenderwoche).then(() => {
                 this.shadowRoot.getElementById('success').classList.add('active');
             });
         });

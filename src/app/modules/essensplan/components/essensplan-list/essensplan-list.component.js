@@ -4,10 +4,6 @@ import EventBus from '../../../../data/eventbus.js'
 
 export default class EssensplanListComponent extends HTMLElement {
 
-    get api() {
-        return this.getAttribute('api');
-    }
-
     connectedCallback() {
         this.attachShadow({mode: 'open'});
         this.shadowRoot.innerHTML = Template.render();
@@ -29,7 +25,6 @@ export default class EssensplanListComponent extends HTMLElement {
         }
     }
 }
-
 
 if (!customElements.get('mp-essensplan-list')) {
     customElements.define('mp-essensplan-list', EssensplanListComponent);

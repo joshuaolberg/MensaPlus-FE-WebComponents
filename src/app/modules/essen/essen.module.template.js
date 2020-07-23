@@ -10,8 +10,11 @@ export default {
 
     html() {
         return `<mp-essen-search searchterm=""></mp-essen-search>
-                <mp-essen-list></mp-essen-list>
-                <mp-essen-add></mp-essen-add>`;
+                <mp-essen-list></mp-essen-list>`;
+    },
+
+    renderAdminFeatures() {
+        return `<mp-essen-add></mp-essen-add>`;
     },
 
     css() {

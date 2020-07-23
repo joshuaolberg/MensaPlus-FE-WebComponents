@@ -44,6 +44,14 @@ export default {
                 </div>`
     },
 
+    renderSpeisekarte(speisekarte) {
+        let html = `<option disabled selected value> -- select an option --</option>`
+        speisekarte.forEach(essen => {
+            html += `<option value="${essen.id}">${essen.name}</option>`
+        });
+        return html;
+    },
+
     css() {
         return `<style>
                     h1 {

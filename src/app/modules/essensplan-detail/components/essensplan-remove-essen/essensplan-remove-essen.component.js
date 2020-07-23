@@ -1,10 +1,8 @@
 import Template from './essensplan-remove-essen.template.js'
+import EssensplanService from '../../../../data/essensplan.service.js'
+import EventBus from "../../../../data/eventbus.js";
 
 export default class EssensplanRemoveEssenComponent extends HTMLElement {
-
-    get api() {
-        return this.getAttribute('api');
-    }
 
     get id() {
         return this.getAttribute('id');
@@ -14,9 +12,8 @@ export default class EssensplanRemoveEssenComponent extends HTMLElement {
         this.attachShadow({mode: 'open'});
         this.shadowRoot.innerHTML = Template.render();
         this.dom = Template.mapDOM(this.shadowRoot);
-        this.getEssensplanById(this.id);
+        EssensplanService.getEssensplanById(this.id);
 
-        // Change Eventlistener
         this.shadowRoot.addEventListener('change', () =>
             this.dom = Template.mapDOM(this.shadowRoot)
         );
@@ -24,50 +21,28 @@ export default class EssensplanRemoveEssenComponent extends HTMLElement {
         const form = this.dom.removeEssenFromEssensplanForm;
         form.addEventListener('submit', (event) => {
             event.preventDefault();
-            this.removeEssenFromEssensplan(this.dom.essenSelectValue)
+            const selectedEssen = JSON.parse(this.dom.essenSelectValue);
+            const essenId = selectedEssen.essenId;
+            const wochentagId = selectedEssen.wochentagId;
+            EssensplanService.removeEssenFromEssensplan(this.id, essenId, wochentagId).then(() => {
+                this.shadowRoot.getElementById('success').classList.add('active');
+            });
+        });
+
+        EventBus.addEventListener(EssensplanService.ESSENSPLAN_DETAIL_CHANGE_EVENT, e => {
+            this.onEssensplanChange(e);
         });
     }
 
-    getEssensplanById(id) {
-        const request = new XMLHttpRequest();
-        request.open('GET', this.api + id);
-        request.addEventListener('load', (event) => {
-            this.renderEssensplan(JSON.parse(event.target.response));
-        });
-        request.send();
-    }
-
-    renderEssensplan(essensplan) {
-        this.dom.essenSelect.innerHTML = '<option disabled selected value> -- select an option --</option>' +
-            `<option value='{"essenId":"` + essensplan.essenProWoche.Montag?.id + `","wochentagId":"0"}'>` + essensplan.essenProWoche.Montag?.name + '</option>' +
-            `<option value='{"essenId":"` + essensplan.essenProWoche.Dienstag?.id + `","wochentagId":"1"}'>` + essensplan.essenProWoche.Dienstag?.name + '</option>' +
-            `<option value='{"essenId":"` + essensplan.essenProWoche.Mittwoch?.id + `","wochentagId":"2"}'>` + essensplan.essenProWoche.Mittwoch?.name + '</option>' +
-            `<option value='{"essenId":"` + essensplan.essenProWoche.Donnerstag?.id + `","wochentagId":"3"}'>` + essensplan.essenProWoche.Donnerstag?.name + '</option>' +
-            `<option value='{"essenId":"` + essensplan.essenProWoche.Freitag?.id + `","wochentagId":"4"}'>` + essensplan.essenProWoche.Freitag?.name + '</option>'
-    }
-
-    removeEssenFromEssensplan(essen) {
-        const selectedEssen = JSON.parse(essen);
-        const essenId = selectedEssen.essenId;
-        const wochentagId = selectedEssen.wochentagId;
-        const url = this.api + this.id + '/delete/' + essenId + '/wt=' + wochentagId;
-
-        const request = new XMLHttpRequest();
-        request.open('DELETE', url, true)
-        request.setRequestHeader('Content-Type', 'application/json');
-
-        // Check if success
-        request.onreadystatechange = function () {
-            if (request.readyState === 4 && request.status === 200) {
-                alert('Essen wurde vom Essensplan gelöscht');
-            }
+    onEssensplanChange(e) {
+        switch (e.detail.action) {
+            case EssensplanService.ESSENSPLAN_DETAIL_LOAD_ACTION:
+                this.dom.essenSelect.innerHTML = Template.renderEssensplan(e.detail.essensplan);
+                break;
+            case EssensplanService.ESSENSPLAN_DETAIL_ADD_ESSEN_ACTION:
+                this.dom.essenSelect.innerHTML = Template.renderEssensplan(e.detail.essensplan);
+                break;
         }
-        request.send();
-        this.shadowRoot.getElementById('success').classList.add('active');
-
-        setTimeout(function () {
-            location.reload()
-        }, 500);
     }
 }
 

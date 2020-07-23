@@ -8,8 +8,11 @@ export default {
     },
 
     html() {
-        return `<mp-essensplan-list api="http://localhost:8080/essensplan"></mp-essensplan-list>
-                <mp-essensplan-add api="http://localhost:8080/essensplan"></mp-essensplan-add>`;
+        return `<mp-essensplan-list></mp-essensplan-list>`;
+    },
+
+    renderAdminFeatures() {
+        return `<mp-essensplan-add></mp-essensplan-add>`
     },
 
     css() {

@@ -1,40 +1,27 @@
 import Template from './login.template.js'
+import AuthenticationService from '../../../data/authentication.service.js'
 
 export default class LoginComponent extends HTMLElement {
-    isAuthenticated;
 
     connectedCallback() {
         this.attachShadow({mode: 'open'});
         this.shadowRoot.innerHTML = Template.render();
         this.dom = Template.mapDOM(this.shadowRoot);
 
-        // Change Eventlistener
         this.shadowRoot.addEventListener('change', () =>
             this.dom = Template.mapDOM(this.shadowRoot)
         );
 
         this.dom.form.addEventListener('submit', (event) => {
             event.preventDefault();
-            this.login(this.dom.username, this.dom.password);
+            AuthenticationService.login(this.dom.username, this.dom.password).then(() => {
+                this.shadowRoot.getElementById('success').classList.add('active');
+            });
         });
-    }
 
-    login(username, password) {
-        const url = 'http://localhost:8080/authenticate'
-        const request = new XMLHttpRequest();
-        request.open('POST', url, true);
-        request.addEventListener('load', (event) => {
-            sessionStorage.setItem('currentUser', JSON.stringify({username, password}));
-            this.isAuthenticated = true;
-        });
-        request.send({username, password});
-    }
-
-    isLoggedIn() {
-        if (sessionStorage.getItem('currentUser') === null) {
-            this.isAuthenticated = false;
-        } else {
-            this.isAuthenticated = true;
+        if (AuthenticationService.isLoggedIn() === true) {
+            this.shadowRoot.getElementById('login').classList.add('hidden');
+            this.shadowRoot.innerHTML += Template.renderAlreadyLoggedIn();
         }
     }
 }

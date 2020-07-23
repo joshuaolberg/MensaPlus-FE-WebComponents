@@ -1,10 +1,15 @@
 import Template from './essensplan.module.template.js'
+import AuthenticationService from "../../data/authentication.service.js";
 
 export default class EssensplanModule extends HTMLElement {
 
     connectedCallback() {
         this.attachShadow({mode: 'open'});
         this.shadowRoot.innerHTML = Template.render();
+
+        if (AuthenticationService.isAdmin() === true) {
+            this.shadowRoot.innerHTML += Template.renderAdminFeatures();
+        }
     }
 }
 

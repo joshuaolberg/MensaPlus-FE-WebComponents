@@ -27,7 +27,19 @@ export default {
     },
 
     get ESSENSPLAN_DETAIL_UPDATE_ACTION() {
-        return 'essensplanUpdateAction';
+        return 'essensplanDetailUpdateAction';
+    },
+
+    get ESSENSPLAN_DETAIL_DELETE_ACTION() {
+        return 'essensplanDetailDeleteAction';
+    },
+
+    get ESSENSPLAN_DETAIL_ADD_ESSEN_ACTION() {
+        return 'essensplanDetailAddEssenAction';
+    },
+
+    get ESSENSPLAN_DETAIL_REMOVE_ESSEN_ACTION() {
+        return 'essensplanDetailRemoveEssenAction';
     },
 
     get essensplan() {
@@ -109,6 +121,55 @@ export default {
                 detail: {
                     action: this.ESSENSPLAN_DETAIL_UPDATE_ACTION,
                     essensplan: data,
+                }
+            });
+            EventBus.dispatchEvent(ce);
+        });
+    },
+
+    deleteEssensplan(id) {
+        return fetch(this.api + id, {
+            method: 'DELETE',
+        }).then(() => {
+            let ce = new CustomEvent(this.ESSENSPLAN_DETAIL_CHANGE_EVENT, {
+                detail: {
+                    action: this.ESSENSPLAN_DETAIL_DELETE_ACTION,
+                }
+            });
+            EventBus.dispatchEvent(ce);
+        });
+    },
+
+    addEssenToEssensplan(essensplanId, essenId, wochentagId) {
+        const url = this.api + essensplanId + '/add/' + essenId + '/wt=' + wochentagId;
+
+        return fetch(url, {
+            method: 'POST',
+        }).then(res => {
+            return res.json();
+        }).then(data => {
+            let ce = new CustomEvent(this.ESSENSPLAN_DETAIL_CHANGE_EVENT, {
+                detail: {
+                    action: this.ESSENSPLAN_DETAIL_ADD_ESSEN_ACTION,
+                    essensplan: data
+                }
+            });
+            EventBus.dispatchEvent(ce);
+        });
+    },
+
+    removeEssenFromEssensplan(essensplanId, essenId, wochentagId) {
+        const url = this.api + essensplanId + '/remove/' + essenId + '/wt=' + wochentagId;
+
+        return fetch(url, {
+            method: 'DELETE',
+        }).then(res => {
+            return res.json();
+        }).then(data => {
+            let ce = new CustomEvent(this.ESSENSPLAN_DETAIL_CHANGE_EVENT, {
+                detail: {
+                    action: this.ESSENSPLAN_DETAIL_REMOVE_ESSEN_ACTION,
+                    essensplan: data
                 }
             });
             EventBus.dispatchEvent(ce);

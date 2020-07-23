@@ -8,6 +8,7 @@ import './modules/essensplan/essensplan.module.js';
 import './modules/essensplan-detail/essensplan-detail.module.js';
 
 import './modules/authentication/auth.module.js';
+import './modules/authentication/logout/logout.component.js';
 
 import {Router} from '../vaadin-router.js'
 
@@ -19,6 +20,7 @@ const router = new Router(outlet);
 router.setRoutes([
     {path: '/', component: 'mp-home-module'},
     {path: '/login', component: 'mp-auth-module'},
+    {path: '/logout', component: 'mp-logout-component'},
     {
         path: '/speisekarte',
         children: [
