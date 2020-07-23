@@ -14,7 +14,7 @@ export default class EssenDetailComponent extends HTMLElement {
         this.dom = Template.mapDOM(this.shadowRoot);
 
         // Load on init
-        this.dom.essenDetails.innerHTML = Template.renderEssen(EssenService.getEssenById(this.id));
+        EssenService.getEssenById(this.id);
 
         this.dom.btnGoBack.addEventListener('click', () => window.history.back());
 

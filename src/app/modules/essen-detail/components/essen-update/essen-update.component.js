@@ -2,6 +2,7 @@ import Template from './essen-update.template.js'
 import EssenService from "../../../../data/essen.service.js";
 import EventBus from '../../../../data/eventbus.js'
 
+// TODO: too much MapDOM??
 export default class EssenUpdateComponent extends HTMLElement {
 
     get id() {
@@ -33,13 +34,14 @@ export default class EssenUpdateComponent extends HTMLElement {
     onEssenChange(e) {
         switch (e.detail.action) {
             case EssenService.ESSEN_DETAIL_LOAD_ACTION:
-                this.dom.essenId.innerHTML = this.id;
+                this.dom.essenId.innerHTML = e.detail.essen.id;
                 let name = this.shadowRoot.getElementById('name');
                 let preis = this.shadowRoot.getElementById('preis');
                 let art = this.shadowRoot.getElementById('art');
                 name.value = e.detail.essen.name;
                 preis.value = e.detail.essen.preis;
                 art.value = e.detail.essen.art;
+                this.dom = Template.mapDOM(this.shadowRoot);
                 break;
         }
     }

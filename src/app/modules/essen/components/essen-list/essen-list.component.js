@@ -10,7 +10,7 @@ export default class EssenListComponent extends HTMLElement {
         this.dom = Template.mapDOM(this.shadowRoot);
 
         // Load Speisekarte on init
-        this.dom.speisekarte.innerHTML = Template.renderSpeisekarte(EssenService.speisekarte);
+        EssenService.speisekarte;
 
         // Custom Eventlistener - always triggers when essen gets added, deleted, updated etc.
         EventBus.addEventListener(EssenService.ESSEN_CHANGE_EVENT, e => {

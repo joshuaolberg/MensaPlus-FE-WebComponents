@@ -126,12 +126,14 @@ export default {
         return fetch(this.api, {
             method: 'PUT',
             headers: {
+                'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(essen)
         }).then(res => {
             return res.json();
         }).then(data => {
+            console.log(data);
             let ce = new CustomEvent(this.ESSEN_DETAIL_CHANGE_EVENT, {
                 detail: {
                     action: this.ESSEN_DETAIL_UPDATE_ACTION,

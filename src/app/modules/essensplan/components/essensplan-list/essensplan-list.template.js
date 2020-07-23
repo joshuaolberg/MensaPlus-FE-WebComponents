@@ -46,7 +46,7 @@ export default {
                         </li>
                     </ul>
                     <div class="text-center">
-                        <span>EssensplanID: ${essensplan.id}</span><br />
+                        <span>ID: ${essensplan.id}</span><br />
                         <a href="/essensplan/${essensplan.id}"><button>Details</button></a>
                     </div>
                 </div>`

@@ -6,7 +6,7 @@ export default {
 
     mapDOM(scope) {
         return {
-            essenDetails: scope.querySelector('#essen-detail'),
+            essenDetails: scope.getElementById('essen-detail'),
             btnGoBack: scope.getElementById('go-back'),
         }
     },
