@@ -62,7 +62,7 @@ export default {
                         left: 50%;
                         transform: translatex(-50%);
                         max-width: 60%;
-                        background: #aa4747;
+                        background: var(--list-color);
                         border-radius: 25px;
                         margin-top: 10px;
                         min-height: 30px;

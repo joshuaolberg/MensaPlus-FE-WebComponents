@@ -16,6 +16,9 @@ export default class LoginComponent extends HTMLElement {
             event.preventDefault();
             AuthenticationService.login(this.dom.username, this.dom.password).then(() => {
                 this.shadowRoot.getElementById('success').classList.add('active');
+                window.setTimeout(() => {
+                    window.location.href = '/';
+                }, 1500)
             });
         });
 
