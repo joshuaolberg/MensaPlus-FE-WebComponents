@@ -1,4 +1,5 @@
 import AuthenticationService from './services/authentication.service.js';
+import {Router} from '../vaadin-router.js'
 
 import './modules/home/home.module.js';
 import './modules/not-found/not-found.module.js';
@@ -11,8 +12,6 @@ import './modules/essensplan-detail/essensplan-detail.module.js';
 
 import './modules/authentication/auth.module.js';
 import './modules/authentication/logout/logout.component.js';
-
-import {Router} from '../vaadin-router.js'
 
 setTimeout(() => {
 

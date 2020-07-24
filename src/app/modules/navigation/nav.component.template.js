@@ -35,6 +35,15 @@ export default {
                     :host {
                         font-family: var(--font), sans-serif;
                     }
+                    
+                    nav a {
+                        font-size: 22px;
+                        text-decoration: none;
+                    }
+                    
+                    nav a:hover {
+                        text-decoration: underline;
+                    }
                 </style>`;
     }
 }
