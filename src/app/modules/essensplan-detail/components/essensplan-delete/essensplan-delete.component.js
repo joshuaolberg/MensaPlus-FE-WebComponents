@@ -1,5 +1,5 @@
 import Template from './essensplan-delete.template.js'
-import EssensplanService from '../../../../data/essensplan.service.js'
+import EssensplanService from '../../../../services/essensplan.service.js'
 
 // @TODO: Does not work, when Essen is in Essensplan (Modify Backend)
 export default class EssensplanDeleteComponent extends HTMLElement {

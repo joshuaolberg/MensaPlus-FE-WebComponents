@@ -1,3 +1,5 @@
+import AuthenticationService from './services/authentication.service.js';
+
 import './modules/home/home.module.js';
 import './modules/not-found/not-found.module.js';
 
@@ -12,8 +14,6 @@ import './modules/authentication/logout/logout.component.js';
 
 import {Router} from '../vaadin-router.js'
 
-import './test.module.js'
-
 setTimeout(() => {
 
     // select the DOM node where the route web components are inserted
@@ -27,6 +27,9 @@ setTimeout(() => {
         {path: '/logout', component: 'mp-logout-component'},
         {
             path: '/speisekarte',
+            action: (context, commands) => {
+                if (AuthenticationService.isLoggedIn() === false) return commands.redirect('/login');
+            },
             children: [
                 {path: '/', component: 'mp-essen-module'},
                 {path: '/:id', component: 'mp-essen-detail-module'}
@@ -34,6 +37,9 @@ setTimeout(() => {
         },
         {
             path: '/essensplan',
+            action: (context, commands) => {
+                if (AuthenticationService.isLoggedIn() === false) return commands.redirect('/login');
+            },
             children: [
                 {path: '/', component: 'mp-essensplan-module'},
                 {path: '/:id', component: 'mp-essensplan-detail-module'}

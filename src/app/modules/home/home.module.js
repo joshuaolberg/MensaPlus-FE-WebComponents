@@ -1,7 +1,8 @@
 import Template from './home.module.template.js'
-import AuthenticationService from "../../data/authentication.service.js";
+import AuthenticationService from "../../services/authentication.service.js";
 
 export default class HomeModule extends HTMLElement {
+
     connectedCallback() {
         this.attachShadow({mode: 'open'});
         this.shadowRoot.innerHTML = Template.render();

@@ -1,5 +1,5 @@
 import Template from './essen-delete.template.js'
-import EssenService from '../../../../data/essen.service.js';
+import EssenService from '../../../../services/essen.service.js';
 
 export default class EssenDeleteComponent extends HTMLElement {
 

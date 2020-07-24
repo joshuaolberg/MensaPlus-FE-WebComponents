@@ -1,5 +1,5 @@
 import Template from './login.template.js'
-import AuthenticationService from '../../../data/authentication.service.js'
+import AuthenticationService from '../../../services/authentication.service.js'
 
 export default class LoginComponent extends HTMLElement {
 

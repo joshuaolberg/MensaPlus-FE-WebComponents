@@ -18,6 +18,7 @@ export default {
         return `<div id="container">
                 <div id="login">
                     <h2>Login</h2>
+                    <p>Sie sind nicht angemeldet. Bitte melden Sie sich an, um fortzufahren.</p>
                     <form id="loginForm">
                         <div class="form-group">
                             <label for="username">Benutzername</label>

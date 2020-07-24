@@ -1,7 +1,7 @@
 import Template from './essensplan-add-essen.template.js'
-import EssenService from '../../../../data/essen.service.js'
-import EssensplanService from '../../../../data/essensplan.service.js'
-import EventBus from "../../../../data/eventbus.js";
+import EssenService from '../../../../services/essen.service.js'
+import EssensplanService from '../../../../services/essensplan.service.js'
+import EventBus from "../../../../services/eventbus.js";
 
 export default class EssensplanAddEssenComponent extends HTMLElement {
 

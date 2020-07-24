@@ -1,6 +1,6 @@
 import Template from './essensplan-update.template.js'
-import EssensplanService from "../../../../data/essensplan.service.js";
-import EventBus from '../../../../data/eventbus.js'
+import EssensplanService from "../../../../services/essensplan.service.js";
+import EventBus from '../../../../services/eventbus.js'
 
 // TODO: too much MapDOM??
 export default class EssensplanUpdateComponent extends HTMLElement {

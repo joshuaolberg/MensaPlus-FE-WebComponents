@@ -1,6 +1,6 @@
 import Template from './essensplan-remove-essen.template.js'
-import EssensplanService from '../../../../data/essensplan.service.js'
-import EventBus from "../../../../data/eventbus.js";
+import EssensplanService from '../../../../services/essensplan.service.js'
+import EventBus from "../../../../services/eventbus.js";
 
 export default class EssensplanRemoveEssenComponent extends HTMLElement {
 

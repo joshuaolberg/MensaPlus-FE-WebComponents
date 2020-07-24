@@ -1,5 +1,5 @@
 import Template from './logout.template.js'
-import AuthenticationService from '../../../data/authentication.service.js'
+import AuthenticationService from '../../../services/authentication.service.js'
 
 export default class LogoutComponent extends HTMLElement {
 
@@ -9,8 +9,14 @@ export default class LogoutComponent extends HTMLElement {
 
         if (AuthenticationService.isLoggedIn() === true) {
             AuthenticationService.logout();
+            window.setTimeout(() => {
+                window.location.href = '/';
+            }, 1500)
         } else {
-            alert('Sie sind nicht eingeloggt');
+            console.log('Sie sind nicht eingeloggt');
+            window.setTimeout(() => {
+                window.location.href = '/';
+            }, 1500)
         }
     }
 }
