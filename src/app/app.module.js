@@ -12,39 +12,33 @@ import './modules/authentication/logout/logout.component.js';
 
 import {Router} from '../vaadin-router.js'
 
-// select the DOM node where the route web components are inserted
-const outlet = document.querySelector('mp-app-root');
+import './test.module.js'
 
-// create a router instance and set the routes config
-const router = new Router(outlet);
-router.setRoutes([
-    {path: '/', component: 'mp-home-module'},
-    {path: '/login', component: 'mp-auth-module'},
-    {path: '/logout', component: 'mp-logout-component'},
-    {
-        path: '/speisekarte',
-        children: [
-            {path: '/', component: 'mp-essen-module'},
-            {path: '/:id', component: 'mp-essen-detail-module'}
-        ]
-    },
-    {
-        path: '/essensplan',
-        children: [
-            {path: '/', component: 'mp-essensplan-module'},
-            {path: '/:id', component: 'mp-essensplan-detail-module'}
-        ]
-    },
-    {path: '(.*)', component: 'mp-not-found-module'},
-]);
+setTimeout(() => {
 
-/*
-class AppModule extends HTMLElement {
+    // select the DOM node where the route web components are inserted
+    const outlet = document.querySelector('mp-app-root').shadowRoot.querySelector('app-routing-module');
 
-    connectedCallback() {
-        this.innerHTML = '<app-routing-module></app-routing-module>'
-    }
-}
-
-customElements.define('mp-app-root', AppModule)
-*/
+    // create a router instance and set the routes config
+    const router = new Router(outlet);
+    router.setRoutes([
+        {path: '/', component: 'mp-home-module'},
+        {path: '/login', component: 'mp-auth-module'},
+        {path: '/logout', component: 'mp-logout-component'},
+        {
+            path: '/speisekarte',
+            children: [
+                {path: '/', component: 'mp-essen-module'},
+                {path: '/:id', component: 'mp-essen-detail-module'}
+            ]
+        },
+        {
+            path: '/essensplan',
+            children: [
+                {path: '/', component: 'mp-essensplan-module'},
+                {path: '/:id', component: 'mp-essensplan-detail-module'}
+            ]
+        },
+        {path: '(.*)', component: 'mp-not-found-module'},
+    ]);
+});
