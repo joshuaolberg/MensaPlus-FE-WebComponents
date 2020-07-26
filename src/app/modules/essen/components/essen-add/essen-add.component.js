@@ -1,5 +1,5 @@
 import Template from './essen-add.template.js'
-import EssenService from "../../../../services/essen.service.js";
+import EssenService from "../../../../core/services/essen.service.js";
 
 // TODO: success message
 export default class EssenAddComponent extends HTMLElement {

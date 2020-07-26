@@ -1,5 +1,5 @@
 import Template from './home.module.template.js'
-import AuthenticationService from "../../services/authentication.service.js";
+import AuthenticationService from "../../core/services/authentication.service.js";
 
 export default class HomeModule extends HTMLElement {
 

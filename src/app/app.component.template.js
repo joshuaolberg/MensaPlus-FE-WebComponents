@@ -1,4 +1,4 @@
-import './modules/navigation/nav.component.js'
+import './core/navigation/nav.component.js'
 import './routing.module.js'
 
 export default {

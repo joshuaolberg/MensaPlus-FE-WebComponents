@@ -1,6 +1,6 @@
 import Template from './essensplan-list.template.js'
-import EssensplanService from '../../../../services/essensplan.service.js'
-import EventBus from '../../../../services/eventbus.js'
+import EssensplanService from '../../../../core/services/essensplan.service.js'
+import EventBus from '../../../../core/services/eventbus.js'
 
 export default class EssensplanListComponent extends HTMLElement {
 

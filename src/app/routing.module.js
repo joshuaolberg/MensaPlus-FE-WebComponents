@@ -1,17 +1,17 @@
-import AuthenticationService from './services/authentication.service.js';
+import AuthenticationService from './core/services/authentication.service.js';
 import {Router} from '../vaadin-router.js'
 
 import './modules/home/home.module.js';
-import './modules/not-found/not-found.module.js';
+import './core/not-found/not-found.module.js';
 
-import './modules/essen/essen.module.js';
-import './modules/essen-detail/essen-detail.module.js';
+import './modules/essen/pages/essen/essen.module.js';
+import './modules/essen/pages/essen-detail/essen-detail.module.js';
 
-import './modules/essensplan/essensplan.module.js';
-import './modules/essensplan-detail/essensplan-detail.module.js';
+import './modules/essensplan/pages/essensplan/essensplan.module.js';
+import './modules/essensplan/pages/essensplan-detail/essensplan-detail.module.js';
 
-import './modules/authentication/auth.module.js';
-import './modules/authentication/logout/logout.component.js';
+import './core/authentication/auth.module.js';
+import './core/authentication/logout/logout.component.js';
 
 setTimeout(() => {
 
