@@ -42,6 +42,14 @@ export default {
         return 'essensplanDetailRemoveEssenAction';
     },
 
+    get ESSENSPLAN_FILTER_ACTION() {
+        return 'essensplanFilterAction';
+    },
+
+    get ESSENSPLAN_SEARCH_ESSEN_ACTION() {
+        return 'essensplanSearchEssenAction';
+    },
+
     get essensplan() {
         return fetch(this.api, {
             method: 'GET',
@@ -175,4 +183,14 @@ export default {
             EventBus.dispatchEvent(ce);
         });
     },
+
+    filterEssensplan(id) {
+        let ce = new CustomEvent(this.ESSENSPLAN_CHANGE_EVENT, {
+            detail: {
+                action: this.ESSENSPLAN_FILTER_ACTION,
+                id: id
+            }
+        });
+        EventBus.dispatchEvent(ce);
+    }
 }

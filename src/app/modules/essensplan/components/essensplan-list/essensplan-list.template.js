@@ -11,10 +11,9 @@ export default {
     },
 
     html() {
-        return `<h1>Essensplan</h1>
-                    <div class="container">
-                        <div id="essensplan"></div>
-                    </div>`
+        return `<div class="container">
+                    <div id="essensplan"></div>
+                </div>`
     },
 
     renderAll(essensplan) {
@@ -26,8 +25,8 @@ export default {
     },
 
     renderEssensplan(essensplan) {
-        return `<h1>KW: ${essensplan.kalenderwoche}</h1>
-                <div class="container">
+        return `<div class="essensplan-container" id="${essensplan.id}">
+                    <h1>KW: ${essensplan.kalenderwoche}</h1>
                     <ul>
                         <li>
                             <span>Montag: <a href="/speisekarte/${essensplan.essenProWoche.Montag?.id}">${essensplan.essenProWoche.Montag?.name}</a></span>
@@ -88,6 +87,11 @@ export default {
                     .text-center {
                         text-align: center;
                     }
+                    
+                    .hidden {
+                        display: none;
+                    }
+                
                 </style>`;
     }
 }

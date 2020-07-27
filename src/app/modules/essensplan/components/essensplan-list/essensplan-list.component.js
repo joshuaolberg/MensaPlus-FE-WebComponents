@@ -22,7 +22,31 @@ export default class EssensplanListComponent extends HTMLElement {
                 break;
             case EssensplanService.ESSENSPLAN_ADD_ACTION:
                 this.dom.essensplan.innerHTML += Template.renderEssensplan(e.detail.essensplan);
+                break;
+            case EssensplanService.ESSENSPLAN_FILTER_ACTION:
+                this.filterEssensplanById(e.detail.id);
+                break;
+            case EssensplanService.ESSENSPLAN_SEARCH_ESSEN_ACTION:
+                this.searchEssen();
+                break;
         }
+    }
+
+    filterEssensplanById(id) {
+        let essensplan = this.shadowRoot.querySelectorAll('div.essensplan-container');
+        essensplan.forEach(essensplan => {
+            if (essensplan.id !== id && id !== null) {
+                essensplan.classList.add('hidden');
+            } else if (essensplan.id === id) {
+                essensplan.classList.remove('hidden');
+            } else if (id === null) {
+                essensplan.classList.remove('hidden');
+            }
+        });
+    }
+
+    searchEssen() {
+
     }
 }
 

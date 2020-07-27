@@ -1,5 +1,6 @@
 import '../../components/essensplan-list/essensplan-list.component.js'
 import '../../components/essensplan-add/essensplan-add.component.js'
+import '../../components/essensplan-filter/essensplan-filter.component.js'
 
 export default {
     render() {
@@ -8,7 +9,9 @@ export default {
     },
 
     html() {
-        return `<mp-essensplan-list></mp-essensplan-list>`;
+        return `<h1 class="text-center">Essensplan</h1>
+                <mp-essensplan-filter></mp-essensplan-filter>
+                <mp-essensplan-list></mp-essensplan-list>`;
     },
 
     renderAdminFeatures() {
@@ -19,6 +22,10 @@ export default {
         return `<style>
                     :host {
                        font-family: var(--font), sans-serif;
+                    }
+                    
+                    .text-center {
+                        text-align: center;
                     }
                 </style>`;
     }
