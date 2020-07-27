@@ -28,19 +28,19 @@ export default {
         return `<div class="essensplan-container" id="${essensplan.id}">
                     <h1>KW: ${essensplan.kalenderwoche}</h1>
                     <ul>
-                        <li>
+                        <li class="essen">
                             <span>Montag: <a href="/speisekarte/${essensplan.essenProWoche.Montag?.id}">${essensplan.essenProWoche.Montag?.name}</a></span>
                         </li>
-                        <li>
+                        <li class="essen">
                             <span>Dienstag: <a href="/speisekarte/${essensplan.essenProWoche.Dienstag?.id}">${essensplan.essenProWoche.Dienstag?.name}</a></span>
                         </li>
-                        <li>
+                        <li class="essen">
                             <span>Mittwoch: <a href="/speisekarte/${essensplan.essenProWoche.Mittwoch?.id}">${essensplan.essenProWoche.Mittwoch?.name}</a></span>
                         </li>
-                        <li>
+                        <li class="essen">
                             <span>Donnerstag: <a href="/speisekarte/${essensplan.essenProWoche.Donnerstag?.id}">${essensplan.essenProWoche.Donnerstag?.name}</a></span>
                         </li>
-                        <li>
+                        <li class="essen">
                             <span>Freitag: <a href="/speisekarte/${essensplan.essenProWoche.Freitag?.id}">${essensplan.essenProWoche.Freitag?.name}</a></span>
                         </li>
                     </ul>

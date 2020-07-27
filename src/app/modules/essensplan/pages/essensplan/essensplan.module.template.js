@@ -1,6 +1,7 @@
 import '../../components/essensplan-list/essensplan-list.component.js'
 import '../../components/essensplan-add/essensplan-add.component.js'
 import '../../components/essensplan-filter/essensplan-filter.component.js'
+import '../../components/essensplan-search/essensplan-search.component.js'
 
 export default {
     render() {
@@ -11,6 +12,7 @@ export default {
     html() {
         return `<h1 class="text-center">Essensplan</h1>
                 <mp-essensplan-filter></mp-essensplan-filter>
+                <mp-essensplan-search></mp-essensplan-search>
                 <mp-essensplan-list></mp-essensplan-list>`;
     },
 

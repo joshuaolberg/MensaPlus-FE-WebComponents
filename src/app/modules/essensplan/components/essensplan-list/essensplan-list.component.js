@@ -27,7 +27,7 @@ export default class EssensplanListComponent extends HTMLElement {
                 this.filterEssensplanById(e.detail.id);
                 break;
             case EssensplanService.ESSENSPLAN_SEARCH_ESSEN_ACTION:
-                this.searchEssen();
+                this.searchEssen(e.detail.searchTerm);
                 break;
         }
     }
@@ -45,8 +45,15 @@ export default class EssensplanListComponent extends HTMLElement {
         });
     }
 
-    searchEssen() {
-
+    searchEssen(searchTerm) {
+        let essensplan = this.shadowRoot.querySelectorAll('li.essen');
+        essensplan.forEach(essensplan => {
+            if (essensplan.innerHTML.toLowerCase().search(searchTerm) > -1) {
+                essensplan.classList.remove('hidden');
+            } else {
+                essensplan.classList.add('hidden');
+            }
+        });
     }
 }
 

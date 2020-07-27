@@ -16,14 +16,6 @@ export default class EssensplanFilterComponent extends HTMLElement {
         }
     }
 
-    set filter(val) {
-        this.setAttribute('filter', val)
-    }
-
-    get filter() {
-        return this.getAttribute('filter');
-    }
-
     connectedCallback() {
         this.attachShadow({mode: 'open'});
         this.shadowRoot.innerHTML = Template.render();
@@ -50,6 +42,14 @@ export default class EssensplanFilterComponent extends HTMLElement {
             case EssensplanService.ESSENSPLAN_ADD_ACTION:
                 this.dom.essensplanSelect.innerHTML += Template.renderEssensplan(e.detail.essensplan);
         }
+    }
+
+    set filter(val) {
+        this.setAttribute('filter', val)
+    }
+
+    get filter() {
+        return this.getAttribute('filter');
     }
 }
 

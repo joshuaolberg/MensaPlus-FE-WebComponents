@@ -192,5 +192,15 @@ export default {
             }
         });
         EventBus.dispatchEvent(ce);
+    },
+
+    searchEssen(value) {
+        let ce = new CustomEvent(this.ESSENSPLAN_CHANGE_EVENT, {
+            detail: {
+                action: this.ESSENSPLAN_SEARCH_ESSEN_ACTION,
+                searchTerm: value
+            }
+        });
+        EventBus.dispatchEvent(ce);
     }
 }
