@@ -34,31 +34,6 @@ export default {
         return 'essenDetailDeleteAction';
     },
 
-    /*
-        get speisekarte() {
-            return [
-                {
-                    id: 1,
-                    name: 'Burger',
-                    preis: 7.50,
-                    art: 'mit Fleisch'
-                },
-                {
-                    id: 2,
-                    name: 'Fischburger',
-                    preis: 10.50,
-                    art: 'mit Fisch'
-                },
-                {
-                    id: 3,
-                    name: 'Lasagne',
-                    preis: 12.50,
-                    art: 'mit Fleisch'
-                },
-            ]
-        },
-    */
-
     get speisekarte() {
         return fetch(this.api, {
             method: 'GET',

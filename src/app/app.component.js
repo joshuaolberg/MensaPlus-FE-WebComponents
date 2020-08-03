@@ -7,4 +7,6 @@ class AppComponent extends HTMLElement {
     }
 }
 
-customElements.define('mp-app-root', AppComponent)
+if (!customElements.get('mp-app-root')) {
+    customElements.define('mp-app-root', AppComponent)
+}
