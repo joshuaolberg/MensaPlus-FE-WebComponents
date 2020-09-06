@@ -1,4 +1,3 @@
-import EssenSearchComponent from '../../components/essen-search/essen-search.component.js'
 import EssenListComponent from '../../components/essen-list/essen-list.component.js'
 import EssenAddComponent from '../../components/essen-add/essen-add.component.js'
 
