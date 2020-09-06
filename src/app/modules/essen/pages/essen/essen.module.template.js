@@ -9,8 +9,7 @@ export default {
     },
 
     html() {
-        return `<mp-essen-search searchterm=""></mp-essen-search>
-                <mp-essen-list></mp-essen-list>`;
+        return `<mp-essen-list></mp-essen-list>`;
     },
 
     renderAdminFeatures() {
